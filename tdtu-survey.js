@@ -1,6 +1,33 @@
 // Script xử lý trang đánh giá TDTU
 console.log('TDTU Survey Handler loaded');
 
+// Function to get delay from parent window
+function getSurveyDelay() {
+    let delay = 2000; // Default 2 seconds
+    
+    // Try to get delay from parent window (content script)
+    try {
+        if (window.parent && window.parent.currentDelay) {
+            delay = window.parent.currentDelay;
+            console.log('Got delay from parent window:', delay);
+        } else if (window.currentDelay) {
+            delay = window.currentDelay;
+            console.log('Got delay from current window:', delay);
+        } else if (window.top && window.top.currentDelay) {
+            delay = window.top.currentDelay;
+            console.log('Got delay from top window:', delay);
+        }
+    } catch (error) {
+        console.log('Could not access parent delay, using default:', delay);
+    }
+    
+    return delay;
+}
+
+// Get delay - initialize before using in functions
+let surveyDelay = getSurveyDelay();
+console.log('Using survey delay:', surveyDelay);
+
 // Kiểm tra trang hiện tại và xử lý tương ứng
 if (window.location.href.includes('teaching-quality-survey.tdtu.edu.vn')) {
     
@@ -11,23 +38,26 @@ if (window.location.href.includes('teaching-quality-survey.tdtu.edu.vn')) {
     }
 }
 
+// TDTU Survey Auto-fill Script
+console.log('TDTU Survey script loaded');
+
 function initPageHandler() {
     const currentUrl = window.location.href;
-    console.log('Khởi tạo handler cho trang:', currentUrl);
+    console.log('Current URL:', currentUrl);
     
     if (currentUrl.includes('Survey.aspx')) {
-        // Trang đánh giá chính
-        console.log('Đang ở trang Survey.aspx - Bắt đầu điền form');
+        // Trang khảo sát
+        console.log('Đang ở trang Survey.aspx - Bắt đầu tự động điền');
         setTimeout(() => {
             autoFillSurvey();
-        }, 2000);
+        }, surveyDelay);
         
     } else if (currentUrl.includes('Result.aspx')) {
         // Trang kết quả
         console.log('Đang ở trang Result.aspx - Tìm nút Tiếp tục đánh giá');
         setTimeout(() => {
             clickTiepTucDanhGia();
-        }, 2000);
+        }, surveyDelay);
         
     } else if (currentUrl.includes('choosesurvey.aspx')) {
         // Trang chọn môn - thông báo đã hoàn thành 1 môn
@@ -78,7 +108,7 @@ function clickTiepTuc() {
     const btnTiepTuc = document.getElementById('btnTiepTuc');
     
     if (btnTiepTuc) {
-        console.log('Tìm thấy nút "Tiếp tục", sẽ click sau 2 giây...');
+        console.log('Tìm thấy nút "Tiếp tục", sẽ click sau 500ms...');
         
         // Highlight nút
         btnTiepTuc.style.border = '3px solid #ff9800';
@@ -91,7 +121,7 @@ function clickTiepTuc() {
             } catch (error) {
                 console.error('Lỗi khi click "Tiếp tục":', error);
             }
-        }, 2000);
+        }, 500); // Fixed 500ms delay instead of surveyDelay
         
     } else {
         console.log('Không tìm thấy nút "Tiếp tục"');
@@ -108,7 +138,7 @@ function clickTiepTuc() {
             const btn = document.querySelector(selector);
             if (btn) {
                 console.log(`Tìm thấy nút với selector: ${selector}`);
-                setTimeout(() => btn.click(), 2000);
+                setTimeout(() => btn.click(), 500); // Fixed 500ms delay
                 found = true;
                 break;
             }
@@ -127,7 +157,7 @@ function clickTiepTucDanhGia() {
     const btnTiepTucDanhGia = document.getElementById('btnTiepTucDanhGia');
     
     if (btnTiepTucDanhGia) {
-        console.log('Tìm thấy nút "Tiếp tục đánh giá", sẽ click sau 2 giây...');
+        console.log('Tìm thấy nút "Tiếp tục đánh giá", sẽ click sau 500ms...');
         
         // Highlight nút
         btnTiepTucDanhGia.style.border = '3px solid #4CAF50';
@@ -140,7 +170,7 @@ function clickTiepTucDanhGia() {
             } catch (error) {
                 console.error('Lỗi khi click "Tiếp tục đánh giá":', error);
             }
-        }, 2000);
+        }, 500); // Fixed 500ms delay instead of surveyDelay
         
     } else {
         console.log('Không tìm thấy nút "Tiếp tục đánh giá"');
@@ -157,7 +187,7 @@ function clickTiepTucDanhGia() {
             const btn = document.querySelector(selector);
             if (btn) {
                 console.log(`Tìm thấy nút với selector: ${selector}`);
-                setTimeout(() => btn.click(), 2000);
+                setTimeout(() => btn.click(), 500); // Fixed 500ms delay
                 found = true;
                 break;
             }

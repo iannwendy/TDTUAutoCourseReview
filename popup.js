@@ -1,6 +1,69 @@
 // Lưu trữ trạng thái extension
 let isRunning = false;
 
+// Loading screen functions
+function checkAndShowLoadingScreen() {
+    // Get current session timestamp
+    const currentTime = Date.now();
+    
+    // Check if this is first open after Chrome startup
+    chrome.storage.session.get(['lastExtensionOpen'], function(result) {
+        const lastOpen = result.lastExtensionOpen || 0;
+        const timeDiff = currentTime - lastOpen;
+        
+        // If more than 30 seconds have passed or no previous record, consider it a new Chrome session
+        if (timeDiff > 30000 || lastOpen === 0) {
+            showLoadingScreen();
+        } else {
+            hideLoadingScreen();
+        }
+        
+        // Update last open time
+        chrome.storage.session.set({ lastExtensionOpen: currentTime });
+    });
+}
+
+function showLoadingScreen() {
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    if (loadingOverlay) {
+        // First load the saved theme to apply correct colors
+        chrome.storage.sync.get(['theme'], function(result) {
+            const theme = result.theme || 'ocean';
+            applyThemeToLoading(theme);
+            
+            // Show loading screen
+            loadingOverlay.style.display = 'flex';
+            loadingOverlay.classList.remove('fade-out');
+            
+            // Hide after 1 second
+            setTimeout(() => {
+                hideLoadingScreen();
+            }, 1000);
+        });
+    }
+}
+
+function hideLoadingScreen() {
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    if (loadingOverlay) {
+        loadingOverlay.classList.add('fade-out');
+        setTimeout(() => {
+            loadingOverlay.style.display = 'none';
+        }, 500); // Wait for fade-out animation
+    }
+}
+
+function applyThemeToLoading(theme) {
+    const body = document.body;
+    // Remove all theme classes first
+    body.classList.remove('theme-ocean', 'theme-sunset', 'theme-forest', 'theme-cosmic');
+    
+    // Add the selected theme class if not ocean (default)
+    if (theme !== 'ocean') {
+        body.classList.add(`theme-${theme}`);
+    }
+}
+
 // Helper functions - định nghĩa trước khi sử dụng
 function switchTheme(theme) {
     const body = document.body;
@@ -22,9 +85,6 @@ function switchTheme(theme) {
     }, 800);
     
     console.log('Theme switched to:', theme);
-    
-    // Show success feedback
-    showFeedback('🎨 Đã thay đổi chủ đề!');
 }
 
 function createRippleEffect(event) {
@@ -65,6 +125,9 @@ function addButtonEffects() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Check if this is the first time opening extension after Chrome startup
+    checkAndShowLoadingScreen();
+
     // Khởi tạo elements
     const startBtn = document.getElementById('startBtn');
     const stopBtn = document.getElementById('stopBtn');
@@ -216,19 +279,21 @@ function startAutoReview() {
     document.getElementById('startBtn').disabled = true;
     document.getElementById('stopBtn').disabled = false;
     
-    // Gửi message đến content script để bắt đầu
-    const selectedDelay = document.querySelector('input[name="delay"]:checked');
-    const delay = selectedDelay ? parseFloat(selectedDelay.value) : 1;
-    
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, {
-            action: 'start',
-            delay: delay
-        }, function(response) {
-            if (chrome.runtime.lastError) {
-                updateStatus('stopped', 'Lỗi: Không thể kết nối với trang web');
-                resetButtons();
-            }
+    // Get delay from storage to ensure we use the saved value
+    chrome.storage.sync.get(['delay'], function(result) {
+        const delay = result.delay || 1; // Use stored delay or default to 1
+        console.log('Using delay from storage:', delay);
+        
+        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+            chrome.tabs.sendMessage(tabs[0].id, {
+                action: 'start',
+                delay: delay // Send delay in seconds, content.js will convert to milliseconds
+            }, function(response) {
+                if (chrome.runtime.lastError) {
+                    updateStatus('stopped', 'Lỗi: Không thể kết nối với trang web');
+                    resetButtons();
+                }
+            });
         });
     });
 }

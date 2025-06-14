@@ -7,7 +7,7 @@ chrome.runtime.onInstalled.addListener((details) => {
     
     // Cấu hình mặc định
     chrome.storage.sync.set({
-        delay: 2,
+        delay: 1,
         autoStart: true,
         preferredRating: 'highest' // highest, middle, random
     });
@@ -56,9 +56,13 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 chrome.contextMenus.onClicked.addListener((info, tab) => {
     switch(info.menuItemId) {
         case 'startAutoReview':
-            chrome.tabs.sendMessage(tab.id, {
-                action: 'start',
-                delay: 2000
+            // Get delay from storage instead of hardcoded value
+            chrome.storage.sync.get(['delay'], function(result) {
+                const delay = result.delay || 1;
+                chrome.tabs.sendMessage(tab.id, {
+                    action: 'start',
+                    delay: delay
+                });
             });
             break;
         case 'stopAutoReview':
@@ -83,9 +87,13 @@ if (chrome.commands) {
         switch(command) {
             case 'start-auto-review':
                 chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-                    chrome.tabs.sendMessage(tabs[0].id, {
-                        action: 'start',
-                        delay: 2000
+                    // Get delay from storage instead of hardcoded value
+                    chrome.storage.sync.get(['delay'], function(result) {
+                        const delay = result.delay || 1;
+                        chrome.tabs.sendMessage(tabs[0].id, {
+                            action: 'start',
+                            delay: delay
+                        });
                     });
                 });
                 break;

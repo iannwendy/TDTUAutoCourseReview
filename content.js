@@ -37,6 +37,9 @@ function startAutoReview(delay = 1000) {
     isAutoReviewRunning = true;
     currentDelay = delay;
     
+    // Expose delay globally for other scripts
+    window.currentDelay = delay;
+    
     console.log('Bắt đầu auto review TDTU với delay:', delay);
     
     // Tìm tất cả các môn học cần đánh giá
@@ -418,12 +421,11 @@ function highlightCurrentRow(row) {
 }
 
 function waitForReturnToChoosePage() {
-    // Kiểm tra định kỳ xem có quay lại trang chọn môn không
+    console.log('Chờ quay lại trang chọn môn...');
+    
+    // Kiểm tra định kỳ xem đã quay lại trang chọn môn chưa
     const checkInterval = setInterval(() => {
-        if (!isAutoReviewRunning) {
-            clearInterval(checkInterval);
-            return;
-        }
+        console.log('Kiểm tra URL hiện tại:', window.location.href);
         
         if (window.location.href.includes('choosesurvey.aspx')) {
             clearInterval(checkInterval);
@@ -440,9 +442,9 @@ function waitForReturnToChoosePage() {
                     console.log('Đã hoàn thành tất cả môn học');
                     completeReview();
                 }
-            }, 2000);
+            }, currentDelay); // Use configurable delay instead of hardcoded 2000
         }
-    }, 2000);
+    }, currentDelay); // Use configurable delay instead of hardcoded 2000
     
     // Timeout sau 60 giây nếu không quay lại (tăng thời gian chờ)
     setTimeout(() => {
