@@ -1,9 +1,9 @@
 # 🎓 TDTU Auto Course Review Extension
 
-A modern Chrome extension designed to automatically fill out course evaluation forms for Ton Duc Thang University (TDTU) students with a beautiful, contemporary interface.
+A modern Chrome extension designed to automatically fill out course evaluation forms for Ton Duc Thang University (TDTU) students with a beautiful, contemporary interface featuring official TDTU branding.
 
 ![Extension Preview](https://img.shields.io/badge/Chrome-Extension-green?style=for-the-badge&logo=googlechrome)
-![Version](https://img.shields.io/badge/Version-2.0.0-blue?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-2.1.0-blue?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 ![UI](https://img.shields.io/badge/UI-Modern%20Glass%20Morphism-purple?style=for-the-badge)
 
@@ -15,6 +15,21 @@ A modern Chrome extension designed to automatically fill out course evaluation f
 - 🎯 **Smart Form Filling**: Automatically fills evaluation forms with highest ratings
 - 🔄 **Multi-page Handling**: Seamlessly handles Survey.aspx and Result.aspx pages
 - 📊 **Progress Tracking**: Visual progress bar with real-time status updates
+- 💾 **Persistent Settings**: Your preferences are saved and restored automatically
+
+### 🎨 Modern UI/UX
+- 🌟 **Loading Screen Animation**: Beautiful startup animation with TDTU branding
+- 🏛️ **Official TDTU Logo**: Integrated official university logo throughout the interface
+- 🎭 **Glass Morphism Design**: Modern translucent interface with backdrop blur effects
+- 🌈 **4 Beautiful Themes**: Ocean Blue, Sunset Orange, Forest Green, Cosmic Purple
+- ✨ **Advanced Animations**: Ripple effects, floating animations, celebration effects
+- 🎯 **Visual Feedback System**: Success notifications and smooth transitions
+
+### ⚡ Performance & Reliability
+- 🔧 **Fixed Settings Persistence**: No more lost settings after page refresh
+- 🎛️ **Proper Delay Handling**: Extension now correctly uses your selected timing
+- 🚀 **Optimized Navigation**: Faster button clicks (500ms) for quicker processing
+- 🛡️ **Enhanced Error Handling**: Better error detection and recovery
 
 ## 🛠️ Installation
 
@@ -99,12 +114,15 @@ TDTUAutoCourseReview/
 ├── content.js             # Main automation logic
 ├── tdtu-survey.js         # Survey form handling
 ├── background.js          # Service worker
-├── icons/                 # Extension icons
-│   ├── icon16.png
+├── icons/                 # Extension icons and logos
+│   ├── icon16.png         # Extension icons
 │   ├── icon32.png
 │   ├── icon48.png
 │   ├── icon64.png
-│   └── icon128.png
+│   ├── icon128.png
+│   ├── logo.png           # Original logo
+│   └── TDTU_logo.png      # Official TDTU logo
+├── CHANGELOG.md           # Version history
 └── README.md              # This file
 ```
 
@@ -141,7 +159,15 @@ TDTUAutoCourseReview/
 
 ## 📝 Changelog
 
-### Version 2.0.0 (Current) 🎉
+### Version 2.1.0 (Current) 🎉
+- 🌟 **Loading Screen Animation**: Beautiful startup screen with TDTU branding
+- 🏛️ **Official TDTU Logo**: Integrated official university logo
+- 🐛 **Critical Bug Fixes**: Fixed settings persistence and delay handling issues
+- ⚡ **Performance Improvements**: Optimized button delays and error handling
+- 🎨 **Enhanced Branding**: Updated to "TDTU Auto Course Review"
+- 📁 **Better Organization**: Reorganized logo files and project structure
+
+### Version 2.0.0 🎨
 - 🎨 **MAJOR UI/UX REDESIGN**: Complete interface overhaul with modern design
 - ✨ **Glass Morphism**: Implemented backdrop blur and translucent effects
 - 🌈 **Theme Switcher**: 4 beautiful themes with smooth transitions

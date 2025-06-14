@@ -2,7 +2,48 @@
 
 All notable changes to this project will be documented in this file.
 
-## [2.0.0] - 2024-06-14
+## [2.1.0] - 2025-06-14
+
+### ✨ New Features
+- **Loading Screen Animation**: Added beautiful loading screen that appears on Chrome startup
+  - Glass morphism design matching the main UI
+  - Theme-aware colors that adapt to selected theme
+  - 1-second duration with smooth fade animations
+  - Session-based detection (30-second threshold)
+- **Official TDTU Logo Integration**: Replaced Font Awesome icons with official TDTU logo
+  - High-quality PNG logo in loading screen and header
+  - Proper scaling and positioning for all screen sizes
+  - Maintained glass morphism background effects
+
+### 🐛 Critical Bug Fixes
+- **Fixed Delay Settings Persistence**: Resolved issue where settings didn't persist after page refresh (F5)
+- **Corrected Default Delay**: Changed default from 2 seconds to 1 second as intended
+- **Fixed Extension Ignoring User Settings**: Extension now properly uses user-selected delay values
+- **Resolved JavaScript Hoisting Error**: Fixed `ReferenceError: Cannot access 'surveyDelay' before initialization`
+
+### ⚡ Performance Improvements
+- **Optimized Button Click Delays**: Reduced "Tiếp tục" button delays from 2000ms to 500ms for faster navigation
+- **Enhanced Delay Propagation**: Improved delay value passing between popup → content script → survey script
+- **Better Error Handling**: Added comprehensive error logging and fallback mechanisms
+
+### 🎨 UI/UX Enhancements
+- **Updated Branding**: Changed title to "TDTU Auto Course Review" for better identification
+- **Improved Logo Organization**: Moved all logo files to `icons/` directory for better project structure
+- **Enhanced Loading Experience**: Loading screen now applies user's selected theme automatically
+- **Better Visual Feedback**: Improved status messages and progress indicators
+
+### 🔧 Technical Improvements
+- **Code Organization**: Reorganized JavaScript functions for better maintainability
+- **Storage API Enhancement**: Better use of `chrome.storage.sync` for settings persistence
+- **Cross-Script Communication**: Improved message passing between extension components
+- **Session Management**: Added `chrome.storage.session` for loading screen logic
+
+### 📁 File Structure Changes
+- Moved `logo.png` and `TDTU_logo.png` to `icons/` directory
+- Updated all image references to use correct paths
+- Better organization of extension assets
+
+## [2.0.0] - 2024-06-13
 
 ### 🎨 Major UI/UX Redesign
 - **BREAKING**: Complete interface redesign with modern aesthetics
@@ -60,7 +101,7 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-## [1.0.0] - 2024-06-13
+## [1.0.0] - 2024-06-12
 
 ### Initial Release
 - Basic auto course review functionality
