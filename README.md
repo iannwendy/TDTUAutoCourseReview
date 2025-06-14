@@ -166,4 +166,5 @@ This extension is created for educational purposes and to help TDTU students eff
 <div align="center">
   <p>Made with ❤️ for TDTU students</p>
   <p>⭐ Star this repo if it helped you!</p>
+  <p>© 2025 Bao Minh-Nguyen Co., Ltd. All Rights Reserved.</p>
 </div> 
