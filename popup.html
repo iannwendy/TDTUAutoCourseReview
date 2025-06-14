@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            width: 320px;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            margin: 0;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .header h3 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 600;
+            color: #2c3e50;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .header .subtitle {
+            font-size: 13px;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+        
+        .section {
+            margin-bottom: 18px;
+        }
+        
+        .button {
+            width: 100%;
+            padding: 12px 16px;
+            margin: 6px 0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .start-btn {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+        }
+        
+        .start-btn:hover {
+            background: linear-gradient(135deg, #45a049, #3d8b40);
+        }
+        
+        .stop-btn {
+            background: linear-gradient(135deg, #f44336, #da190b);
+            color: white;
+        }
+        
+        .stop-btn:hover {
+            background: linear-gradient(135deg, #da190b, #c62828);
+        }
+        
+        .settings-btn {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+            color: white;
+        }
+        
+        .settings-btn:hover {
+            background: linear-gradient(135deg, #1976D2, #1565C0);
+        }
+        
+        .status {
+            padding: 12px 16px;
+            margin: 12px 0;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .status.idle {
+            background: linear-gradient(135deg, #ecf0f1, #bdc3c7);
+            color: #2c3e50;
+        }
+        
+        .status.running {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            animation: pulse 2s infinite;
+        }
+        
+        .status.stopped {
+            background: linear-gradient(135deg, #f44336, #da190b);
+            color: white;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+        
+        .config-section {
+            border: 2px solid #e8f4fd;
+            background: linear-gradient(135deg, #f8fbff, #e8f4fd);
+            padding: 16px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .config-section h4 {
+            margin: 0 0 12px 0;
+            font-size: 17px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        .delay-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin: 10px 0;
+        }
+        
+        .delay-option {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            background: white;
+            border: 2px solid #e3f2fd;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+        
+        .delay-option:hover {
+            border-color: #2196F3;
+            background: #f3f9ff;
+        }
+        
+        .delay-option input[type="radio"] {
+            margin-right: 8px;
+            transform: scale(1.1);
+        }
+        
+        .delay-option.selected {
+            border-color: #2196F3;
+            background: #e3f2fd;
+            font-weight: 500;
+        }
+        
+        label {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        
+        input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+        
+        .progress-section {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #e9ecef;
+        }
+        
+        .progress-text {
+            font-size: 16px;
+            font-weight: 500;
+            color: #495057;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #45a049);
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 4px;
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.3s ease;
+        }
+        
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .modal-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .modal-header h3 {
+            margin: 0;
+            color: #2c3e50;
+            font-size: 20px;
+        }
+        
+        .modal-body {
+            line-height: 1.6;
+            color: #555;
+            font-size: 14px;
+        }
+        
+        .modal-body ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        
+        .modal-body li {
+            margin: 5px 0;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .social-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .social-link.github {
+            background: linear-gradient(135deg, #333, #555);
+        }
+        
+        .social-link.instagram {
+            background: linear-gradient(135deg, #E4405F, #C13584);
+        }
+        
+        .close-btn {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 15px auto 0;
+            display: block;
+        }
+        
+        .close-btn:hover {
+            background: #da190b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h3>Auto Course Review</h3>
+        </div>
+        
+        <div class="status idle" id="status">
+            Trạng thái: Hoàn thành
+        </div>
+        
+        <div class="config-section">
+            <h4>⚙️ Cấu hình</h4>
+            
+            <div>
+                <strong>Tốc độ xử lý:</strong>
+                <div class="delay-options">
+                    <label class="delay-option" data-delay="0">
+                        <input type="radio" name="delay" value="0">
+                        Tức thì (0s)
+                    </label>
+                    <label class="delay-option" data-delay="0.5">
+                        <input type="radio" name="delay" value="0.5">
+                        Nhanh (0.5s)
+                    </label>
+                    <label class="delay-option" data-delay="1">
+                        <input type="radio" name="delay" value="1" checked>
+                        Bình thường (1s)
+                    </label>
+                    <label class="delay-option" data-delay="2">
+                        <input type="radio" name="delay" value="2">
+                        Chậm (2s)
+                    </label>
+                </div>
+            </div>
+            
+            <label>
+                <input type="checkbox" id="autoStart" checked>
+                Tự động bắt đầu khi tải trang
+            </label>
+        </div>
+        
+        <div class="section">
+            <button class="button start-btn" id="startBtn">Bắt đầu tự động đánh giá</button>
+            <button class="button stop-btn" id="stopBtn">Dừng lại</button>
+            <button class="button settings-btn" id="settingsBtn">About Extension</button>
+        </div>
+        
+        <div class="progress-section">
+            <div class="progress-text">Tiến độ: <span id="progress">0/0</span></div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Modal -->
+    <div id="aboutModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🎓 Auto Course Review</h3>
+            </div>
+            <div class="modal-body">
+                <p><strong>✨ Tính năng:</strong></p>
+                <ul>
+                    <li>Tự động quét và đánh giá môn học</li>
+                    <li>Hỗ trợ nhiều tốc độ xử lý</li>
+                    <li>Tự động điền form với rating cao nhất</li>
+                    <li>Xử lý tự động các trang Survey và Result</li>
+                </ul>
+                
+                <p><strong>⚙️ Cách sử dụng:</strong></p>
+                <ol>
+                    <li>Chọn tốc độ xử lý phù hợp</li>
+                    <li>Nhấn "Bắt đầu tự động đánh giá"</li>
+                    <li>Extension sẽ tự động xử lý tất cả</li>
+                </ol>
+                
+                <p><strong>💡 Lưu ý:</strong> Tốc độ "Tức thì (0s)" có thể bị chặn bởi một số website.</p>
+                
+                <div style="text-align: center; margin: 20px 0;">
+                    <p><strong>👨‍💻 Developed by @iannwendy</strong></p>
+                    <div class="social-links">
+                        <a href="#" class="social-link github" id="githubLink">
+                            🔗 GitHub
+                        </a>
+                        <a href="#" class="social-link instagram" id="instagramLink">
+                            📸 Instagram
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <button class="close-btn" id="closeModal">Đóng</button>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html> 
