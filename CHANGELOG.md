@@ -99,6 +99,24 @@ All notable changes to this project will be documented in this file.
 - Enhanced cross-browser compatibility
 - Better error handling and debugging
 
+## [2.2.0] - 2025-06-14
+
+### ⚡ Improvements
+- **Faster Loading**: Reduced loading overlay duration to 0.5 s (was 1 s)
+- **Spinner Speed**: Spinner now rotates 50 % faster for snappier feedback
+
+### 🎨 UI/UX
+- **Social Icons Simplified**: Social links now show icons only and smooth single-scale hover effect
+- **Popup Polish**: Smoother transitions, removed section slide-in animation, container appears instantly
+
+### 🛠 Refactor
+- Cleaned redundant loading-bar code and restored optimized spinner
+- Updated CSS to remove unused animations, tightened transitions
+
+### 📂 Misc
+- Version bumped in manifest & UI
+- README badges updated
+
 ---
 
 ## [1.0.0] - 2024-06-12

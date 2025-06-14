@@ -3,7 +3,7 @@
 A modern Chrome extension designed to automatically fill out course evaluation forms for Ton Duc Thang University (TDTU) students with a beautiful, contemporary interface featuring official TDTU branding.
 
 ![Extension Preview](https://img.shields.io/badge/Chrome-Extension-green?style=for-the-badge&logo=googlechrome)
-![Version](https://img.shields.io/badge/Version-2.1.0-blue?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-2.2.0-blue?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 ![UI](https://img.shields.io/badge/UI-Modern%20Glass%20Morphism-purple?style=for-the-badge)
 
