@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Auto Course Review",
-  "version": "1.0",
-  "description": "Tiện ích tự động đánh giá môn học",
+  "version": "2.0.0",
+  "description": "Tiện ích tự động đánh giá môn học với giao diện hiện đại",
   "permissions": [
     "activeTab",
     "storage",

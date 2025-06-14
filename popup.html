@@ -2,415 +2,1248 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            width: 320px;
-            padding: 20px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 15px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 380px;
+            min-height: 480px;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            font-size: 14px;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #0369a1 50%, #0ea5e9 75%, #38bdf8 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 12s ease infinite;
             color: #333;
             margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="%23ffffff" opacity="0.05"/><circle cx="80" cy="40" r="0.5" fill="%23ffffff" opacity="0.08"/><circle cx="40" cy="80" r="1.5" fill="%23ffffff" opacity="0.03"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+            pointer-events: none;
+        }
+        
+        body::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.1) 1px, transparent 1px),
+                        radial-gradient(circle at 80% 80%, rgba(255,255,255,0.05) 1px, transparent 1px),
+                        radial-gradient(circle at 40% 40%, rgba(255,255,255,0.08) 0.5px, transparent 1px);
+            background-size: 50px 50px, 80px 80px, 60px 60px;
+            animation: particleFloat 20s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        @keyframes particleFloat {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-100px); }
         }
         
         .container {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 24px;
+            margin: 16px;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.1),
+                0 2px 16px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            border-radius: 20px;
+            pointer-events: none;
+        }
+        
+        .container:hover {
+            box-shadow: 
+                0 16px 48px rgba(0, 0, 0, 0.15),
+                0 4px 24px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            transform: translateY(-1px);
+            transition: all 0.3s ease;
         }
         
         .header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 28px;
+            position: relative;
+        }
+        
+                 .header .logo {
+             width: 48px;
+             height: 48px;
+             background: linear-gradient(135deg, #0369a1, #0ea5e9, #38bdf8);
+             border-radius: 16px;
+             margin: 0 auto 16px;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             color: white;
+             font-size: 24px;
+             box-shadow: 
+                 0 8px 24px rgba(3, 105, 161, 0.4),
+                 0 2px 8px rgba(14, 165, 233, 0.3);
+             animation: logoFloat 6s ease-in-out infinite;
+             position: relative;
+         }
+        
+                 .header .logo::before {
+             content: '';
+             position: absolute;
+             top: -4px;
+             left: -4px;
+             right: -4px;
+             bottom: -4px;
+             background: linear-gradient(45deg, #0369a1, #0ea5e9, #38bdf8, #0369a1);
+             background-size: 300% 300%;
+             border-radius: 20px;
+             opacity: 0;
+             z-index: -1;
+             animation: logoGlow 4s ease-in-out infinite;
+         }
+        
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-4px) rotate(2deg); }
+        }
+        
+        @keyframes logoGlow {
+            0%, 100% { 
+                opacity: 0;
+                background-position: 0% 50%;
+            }
+            50% { 
+                opacity: 0.3;
+                background-position: 100% 50%;
+            }
         }
         
         .header h3 {
             margin: 0;
-            font-size: 22px;
-            font-weight: 600;
-            color: #2c3e50;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 4px;
+            letter-spacing: -0.5px;
         }
         
         .header .subtitle {
             font-size: 13px;
-            color: #7f8c8d;
-            margin-top: 5px;
+            color: #64748b;
+            font-weight: 500;
+            opacity: 0.8;
         }
         
         .section {
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
         
         .button {
             width: 100%;
-            padding: 12px 16px;
-            margin: 6px 0;
+            padding: 16px 20px;
+            margin: 8px 0;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
             font-size: 15px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-transform: none;
+            letter-spacing: 0.2px;
+            background-attachment: fixed;
+        }
+        
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.6s;
+        }
+        
+        .button:hover::before {
+            left: 100%;
         }
         
         .button:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+        
+        .button:active {
+            transform: translateY(0px) scale(0.98);
+            transition: all 0.1s;
+        }
+        
+        .button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05) !important;
+        }
+        
+        .button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .button:active::after {
+            width: 300px;
+            height: 300px;
+            transition: width 0.2s, height 0.2s;
         }
         
         .start-btn {
-            background: linear-gradient(135deg, #4CAF50, #45a049);
+            background: linear-gradient(135deg, #10b981, #059669);
             color: white;
+            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
         }
         
         .start-btn:hover {
-            background: linear-gradient(135deg, #45a049, #3d8b40);
+            background: linear-gradient(135deg, #059669, #047857);
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
         }
         
         .stop-btn {
-            background: linear-gradient(135deg, #f44336, #da190b);
+            background: linear-gradient(135deg, #ef4444, #dc2626);
             color: white;
+            box-shadow: 0 4px 16px rgba(239, 68, 68, 0.3);
         }
         
         .stop-btn:hover {
-            background: linear-gradient(135deg, #da190b, #c62828);
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            box-shadow: 0 8px 24px rgba(239, 68, 68, 0.4);
         }
         
         .settings-btn {
-            background: linear-gradient(135deg, #2196F3, #1976D2);
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
             color: white;
+            box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
         }
         
         .settings-btn:hover {
-            background: linear-gradient(135deg, #1976D2, #1565C0);
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4);
         }
         
         .status {
-            padding: 12px 16px;
-            margin: 12px 0;
-            border-radius: 8px;
+            padding: 16px 20px;
+            margin: 16px 0;
+            border-radius: 12px;
             text-align: center;
-            font-weight: 500;
-            font-size: 15px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-weight: 600;
+            font-size: 14px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .status::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: inherit;
+            opacity: 0.1;
+            z-index: -1;
         }
         
         .status.idle {
-            background: linear-gradient(135deg, #ecf0f1, #bdc3c7);
-            color: #2c3e50;
+            background: linear-gradient(135deg, rgba(148, 163, 184, 0.8), rgba(203, 213, 225, 0.8));
+            color: #475569;
+            border-color: rgba(148, 163, 184, 0.3);
         }
         
         .status.running {
-            background: linear-gradient(135deg, #4CAF50, #45a049);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.8), rgba(5, 150, 105, 0.8));
             color: white;
-            animation: pulse 2s infinite;
+            border-color: rgba(16, 185, 129, 0.3);
+            animation: statusPulse 2s ease-in-out infinite;
         }
         
         .status.stopped {
-            background: linear-gradient(135deg, #f44336, #da190b);
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.8), rgba(220, 38, 38, 0.8));
             color: white;
+            border-color: rgba(239, 68, 68, 0.3);
         }
         
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.8; }
-            100% { opacity: 1; }
+        .status.running::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: statusSweep 2s infinite;
+        }
+        
+        @keyframes statusPulse {
+            0%, 100% { 
+                opacity: 1;
+                box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+            }
+            50% { 
+                opacity: 0.9;
+                box-shadow: 0 8px 24px rgba(16, 185, 129, 0.5);
+                transform: scale(1.01);
+            }
+        }
+        
+        @keyframes statusSweep {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
         
         .config-section {
-            border: 2px solid #e8f4fd;
-            background: linear-gradient(135deg, #f8fbff, #e8f4fd);
-            padding: 16px;
-            border-radius: 10px;
-            margin-bottom: 15px;
+            background: rgba(248, 250, 252, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+                 .config-section::before {
+             content: '';
+             position: absolute;
+             top: 0;
+             left: 0;
+             right: 0;
+             height: 2px;
+             background: linear-gradient(90deg, #0369a1, #0ea5e9, #38bdf8);
+             border-radius: 16px 16px 0 0;
+         }
+        
+        .config-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.15);
+        }
+        
+                 .config-section:hover::before {
+             height: 3px;
+             background: linear-gradient(90deg, #0369a1, #0ea5e9, #38bdf8);
+             background-size: 200% 100%;
+             animation: gradientMove 2s ease infinite;
+         }
+        
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         
         .config-section h4 {
-            margin: 0 0 12px 0;
-            font-size: 17px;
-            color: #2c3e50;
-            font-weight: 600;
+            margin: 0 0 16px 0;
+            font-size: 16px;
+            color: #1e293b;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .delay-options {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-            margin: 10px 0;
+            gap: 10px;
+            margin: 12px 0;
         }
         
         .delay-option {
             display: flex;
             align-items: center;
-            padding: 8px 12px;
-            background: white;
-            border: 2px solid #e3f2fd;
-            border-radius: 6px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(226, 232, 240, 0.5);
+            border-radius: 10px;
             cursor: pointer;
-            transition: all 0.2s ease;
-            font-size: 14px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 13px;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .delay-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(37, 99, 235, 0.05));
+            opacity: 0;
+            transition: opacity 0.3s;
         }
         
         .delay-option:hover {
-            border-color: #2196F3;
-            background: #f3f9ff;
+            border-color: rgba(59, 130, 246, 0.4);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+        }
+        
+        .delay-option:hover::before {
+            opacity: 1;
         }
         
         .delay-option input[type="radio"] {
-            margin-right: 8px;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            border-radius: 50%;
+            margin-right: 10px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .delay-option input[type="radio"]:checked {
+            border-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
             transform: scale(1.1);
         }
         
+        .delay-option input[type="radio"]:checked::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            border-radius: 50%;
+            animation: radioCheck 0.3s ease;
+        }
+        
+        @keyframes radioCheck {
+            0% { 
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% { 
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
         .delay-option.selected {
-            border-color: #2196F3;
-            background: #e3f2fd;
-            font-weight: 500;
+            border-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+            color: #1e40af;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+        }
+        
+        .delay-option.selected::before {
+            opacity: 1;
         }
         
         label {
             display: flex;
             align-items: center;
-            margin: 8px 0;
-            font-size: 15px;
+            margin: 12px 0;
+            font-size: 14px;
             cursor: pointer;
+            font-weight: 500;
+            color: #334155;
+            transition: color 0.2s;
+        }
+        
+        label:hover {
+            color: #1e293b;
         }
         
         input[type="checkbox"] {
-            margin-right: 10px;
-            transform: scale(1.2);
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            border-radius: 4px;
+            margin-right: 12px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        input[type="checkbox"]:checked {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            border-color: #3b82f6;
+            transform: scale(1.1);
+        }
+        
+        input[type="checkbox"]:checked::after {
+            content: '';
+            position: absolute;
+            top: 1px;
+            left: 4px;
+            width: 4px;
+            height: 8px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+            animation: checkmark 0.3s ease;
+        }
+        
+        @keyframes checkmark {
+            0% { 
+                opacity: 0;
+                transform: rotate(45deg) scale(0);
+            }
+            100% { 
+                opacity: 1;
+                transform: rotate(45deg) scale(1);
+            }
         }
         
         .progress-section {
-            background: #f8f9fa;
-            padding: 12px;
-            border-radius: 8px;
+            background: rgba(248, 250, 252, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            border-radius: 12px;
             text-align: center;
-            border: 1px solid #e9ecef;
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            margin-bottom: 16px;
         }
         
         .progress-text {
-            font-size: 16px;
-            font-weight: 500;
-            color: #495057;
+            font-size: 15px;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        .progress-text.loading::after {
+            content: '';
+            animation: loadingDots 1.5s infinite;
+        }
+        
+        @keyframes loadingDots {
+            0%, 33% { content: ''; }
+            33%, 66% { content: '.'; }
+            66%, 100% { content: '..'; }
+            100% { content: '...'; }
         }
         
         .progress-bar {
             width: 100%;
-            height: 8px;
-            background: #e9ecef;
-            border-radius: 4px;
+            height: 6px;
+            background: rgba(226, 232, 240, 0.8);
+            border-radius: 3px;
             margin-top: 8px;
             overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                rgba(255,255,255,0.3) 0%, 
+                transparent 50%, 
+                rgba(255,255,255,0.3) 100%);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
         
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #4CAF50, #45a049);
+            background: linear-gradient(90deg, #10b981, #059669, #10b981);
+            background-size: 200% 100%;
             width: 0%;
-            transition: width 0.3s ease;
-            border-radius: 4px;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 3px;
+            animation: progressShine 2s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255,255,255,0.4) 50%, 
+                transparent 100%);
+            animation: progressWave 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes progressShine {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        @keyframes progressWave {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
         
         /* Modal styles */
         .modal {
             display: none;
             position: fixed;
-            z-index: 1000;
+            z-index: 10000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            animation: modalFadeIn 0.3s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; backdrop-filter: blur(0px); }
+            to { opacity: 1; backdrop-filter: blur(4px); }
         }
         
         .modal-content {
-            background-color: white;
-            margin: 10% auto;
-            padding: 20px;
-            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            margin: 8% auto;
+            padding: 28px;
+            border-radius: 20px;
             width: 90%;
-            max-width: 400px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-            animation: modalSlideIn 0.3s ease;
+            max-width: 420px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 
+                0 20px 80px rgba(0,0,0,0.3),
+                0 8px 32px rgba(0,0,0,0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
+            animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            border-radius: 20px;
+            pointer-events: none;
+        }
+        
+        .modal-content::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 20px;
+            background: linear-gradient(135deg, 
+                rgba(255,255,255,0.1) 0%, 
+                transparent 50%, 
+                rgba(255,255,255,0.05) 100%);
+            pointer-events: none;
+            z-index: -1;
         }
         
         @keyframes modalSlideIn {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { 
+                opacity: 0; 
+                transform: translateY(-40px) scale(0.9); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
         }
         
         .modal-header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
         }
         
         .modal-header h3 {
-            margin: 0;
-            color: #2c3e50;
-            font-size: 20px;
+            font-size: 22px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+        
+        .close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            color: #64748b;
+            font-size: 24px;
+            font-weight: 300;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            transition: all 0.2s;
+            z-index: 2;
+        }
+        
+        .close:hover {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            transform: scale(1.1);
         }
         
         .modal-body {
-            line-height: 1.6;
-            color: #555;
-            font-size: 14px;
-        }
-        
-        .modal-body ul {
-            padding-left: 20px;
-            margin: 10px 0;
-        }
-        
-        .modal-body li {
-            margin: 5px 0;
+            position: relative;
+            z-index: 1;
         }
         
         .social-links {
             display: flex;
+            gap: 12px;
             justify-content: center;
-            gap: 15px;
-            margin: 20px 0;
+            margin-top: 20px;
         }
         
         .social-link {
             display: flex;
             align-items: center;
-            padding: 8px 16px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
+            gap: 8px;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            border-radius: 12px;
             text-decoration: none;
-            border-radius: 20px;
-            font-size: 13px;
+            color: #475569;
             font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-size: 13px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            transform-origin: center;
+        }
+        
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.6s;
+        }
+        
+        .social-link:hover::before {
+            left: 100%;
         }
         
         .social-link:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            border-color: rgba(59, 130, 246, 0.3);
+            animation: socialBounce 0.6s ease;
         }
         
-        .social-link.github {
-            background: linear-gradient(135deg, #333, #555);
+        @keyframes socialBounce {
+            0%, 20%, 60%, 100% { transform: translateY(-2px) scale(1); }
+            40% { transform: translateY(-4px) scale(1.05); }
+            80% { transform: translateY(-1px) scale(1.02); }
         }
         
-        .social-link.instagram {
-            background: linear-gradient(135deg, #E4405F, #C13584);
+        .github-link {
+            color: #24292e;
         }
         
-        .close-btn {
-            background: #f44336;
-            color: white;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-            margin: 15px auto 0;
-            display: block;
+        .instagram-link {
+            background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
-        .close-btn:hover {
-            background: #da190b;
+        /* Smooth scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
         }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(226, 232, 240, 0.3);
+            border-radius: 3px;
+        }
+        
+                 ::-webkit-scrollbar-thumb {
+             background: linear-gradient(135deg, #0369a1, #0ea5e9);
+             border-radius: 3px;
+         }
+         
+         ::-webkit-scrollbar-thumb:hover {
+             background: linear-gradient(135deg, #0284c7, #0ea5e9);
+         }
+        
+        /* Add some micro-animations */
+        .section {
+            animation: slideInUp 0.6s ease forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+        
+        @keyframes slideInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Tooltip effect for icons */
+        [class*="fa-"]::before {
+            transition: all 0.2s ease;
+        }
+        
+        .button:hover [class*="fa-"] {
+            transform: scale(1.1);
+        }
+        
+        /* Responsive glow effect */
+                 @media (prefers-reduced-motion: no-preference) {
+             .container::after {
+                 content: '';
+                 position: absolute;
+                 top: -2px;
+                 left: -2px;
+                 right: -2px;
+                 bottom: -2px;
+                 background: linear-gradient(45deg, #0369a1, #0ea5e9, #38bdf8, #0369a1);
+                 background-size: 400% 400%;
+                 border-radius: 22px;
+                 opacity: 0;
+                 z-index: -1;
+                 animation: containerGlow 8s ease-in-out infinite;
+             }
+         }
+        
+                 @keyframes containerGlow {
+             0%, 100% { 
+                 opacity: 0;
+                 background-position: 0% 50%;
+             }
+             50% { 
+                 opacity: 0.1;
+                 background-position: 100% 50%;
+             }
+         }
+         
+         /* Theme Selector Styles */
+         .theme-selector {
+             display: flex;
+             gap: 8px;
+             justify-content: center;
+             flex-wrap: wrap;
+         }
+         
+         .theme-btn {
+             width: 40px;
+             height: 40px;
+             border: 3px solid rgba(226, 232, 240, 0.5);
+             border-radius: 12px;
+             background: transparent;
+             cursor: pointer;
+             transition: all 0.3s ease;
+             position: relative;
+             overflow: hidden;
+             padding: 4px;
+         }
+         
+         .theme-btn:hover {
+             transform: translateY(-2px) scale(1.05);
+             border-color: rgba(255, 255, 255, 0.8);
+             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+         }
+         
+         .theme-btn.active {
+             border-color: rgba(255, 255, 255, 0.9);
+             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+             transform: scale(1.1);
+         }
+         
+         .theme-btn::before {
+             content: '';
+             position: absolute;
+             top: 0;
+             left: 0;
+             right: 0;
+             bottom: 0;
+             background: rgba(255, 255, 255, 0.2);
+             opacity: 0;
+             transition: opacity 0.3s;
+             border-radius: 8px;
+         }
+         
+         .theme-btn:hover::before {
+             opacity: 1;
+         }
+         
+         .theme-preview {
+             width: 100%;
+             height: 100%;
+             border-radius: 8px;
+             transition: all 0.3s ease;
+         }
+         
+         .theme-btn:hover .theme-preview {
+             transform: scale(0.9);
+         }
+         
+         .theme-btn.active .theme-preview {
+             box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+         }
+         
+         /* Theme Variables */
+         :root {
+             --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #0369a1 50%, #0ea5e9 75%, #38bdf8 100%);
+             --logo-gradient: linear-gradient(135deg, #0369a1, #0ea5e9, #38bdf8);
+             --accent-color: #0ea5e9;
+             --accent-color-rgb: 14, 165, 233;
+         }
+         
+         /* Dynamic theme classes */
+         body.theme-sunset {
+             background: linear-gradient(135deg, #7c2d12 0%, #ea580c 25%, #fb923c 50%, #fbbf24 75%, #fde047 100%) !important;
+         }
+         
+         body.theme-forest {
+             background: linear-gradient(135deg, #064e3b 0%, #065f46 25%, #059669 50%, #10b981 75%, #34d399 100%) !important;
+         }
+         
+         body.theme-cosmic {
+             background: linear-gradient(135deg, #581c87 0%, #7c3aed 25%, #a855f7 50%, #c084fc 75%, #ddd6fe 100%) !important;
+         }
+         
+         /* Click feedback animation */
+         .click-ripple {
+             position: absolute;
+             border-radius: 50%;
+             background: rgba(255, 255, 255, 0.6);
+             pointer-events: none;
+             animation: ripple 0.8s ease-out;
+             z-index: 1000;
+         }
+         
+         @keyframes ripple {
+             0% {
+                 width: 0;
+                 height: 0;
+                 opacity: 1;
+             }
+             100% {
+                 width: 100px;
+                 height: 100px;
+                 opacity: 0;
+             }
+         }
+         
+         /* Success animation */
+         .success-feedback {
+             position: fixed;
+             top: 50%;
+             left: 50%;
+             transform: translate(-50%, -50%);
+             background: linear-gradient(135deg, #10b981, #34d399);
+             color: white;
+             padding: 12px 20px;
+             border-radius: 50px;
+             font-size: 14px;
+             font-weight: 600;
+             box-shadow: 0 8px 32px rgba(16, 185, 129, 0.4);
+             z-index: 10000;
+             animation: successPop 2s ease-in-out;
+             pointer-events: none;
+         }
+         
+         @keyframes successPop {
+             0% {
+                 opacity: 0;
+                 transform: translate(-50%, -50%) scale(0.5);
+             }
+             20% {
+                 opacity: 1;
+                 transform: translate(-50%, -50%) scale(1.1);
+             }
+             80% {
+                 opacity: 1;
+                 transform: translate(-50%, -50%) scale(1);
+             }
+             100% {
+                 opacity: 0;
+                 transform: translate(-50%, -50%) scale(0.8);
+             }
+         }
+         
+         /* Shake animation for errors */
+         .shake {
+             animation: shake 0.5s ease-in-out;
+         }
+         
+         @keyframes shake {
+             0%, 100% { transform: translateX(0); }
+             25% { transform: translateX(-5px); }
+             75% { transform: translateX(5px); }
+         }
+         
+         /* Celebration effect */
+         body.celebration {
+             animation: celebrate 2s ease-in-out;
+         }
+         
+         @keyframes celebrate {
+             0%, 100% { filter: hue-rotate(0deg) brightness(1); }
+             25% { filter: hue-rotate(90deg) brightness(1.2); }
+             50% { filter: hue-rotate(180deg) brightness(1.1); }
+             75% { filter: hue-rotate(270deg) brightness(1.2); }
+         }
+         
+         body.celebration .container {
+             animation: bounce 1s ease-in-out;
+         }
+         
+         @keyframes bounce {
+             0%, 100% { transform: translateY(0) scale(1); }
+             50% { transform: translateY(-10px) scale(1.02); }
+         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h3>Auto Course Review</h3>
-        </div>
-        
-        <div class="status idle" id="status">
-            Trạng thái: Hoàn thành
-        </div>
-        
-        <div class="config-section">
-            <h4>⚙️ Cấu hình</h4>
-            
-            <div>
-                <strong>Tốc độ xử lý:</strong>
-                <div class="delay-options">
-                    <label class="delay-option" data-delay="0">
-                        <input type="radio" name="delay" value="0">
-                        Tức thì (0s)
-                    </label>
-                    <label class="delay-option" data-delay="0.5">
-                        <input type="radio" name="delay" value="0.5">
-                        Nhanh (0.5s)
-                    </label>
-                    <label class="delay-option" data-delay="1">
-                        <input type="radio" name="delay" value="1" checked>
-                        Bình thường (1s)
-                    </label>
-                    <label class="delay-option" data-delay="2">
-                        <input type="radio" name="delay" value="2">
-                        Chậm (2s)
-                    </label>
-                </div>
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
             </div>
-            
-            <label>
-                <input type="checkbox" id="autoStart" checked>
-                Tự động bắt đầu khi tải trang
-            </label>
+            <h3>Auto Course Review</h3>
+            <div class="subtitle">Được phát triển bởi iannwendy.</div>
         </div>
         
         <div class="section">
-            <button class="button start-btn" id="startBtn">Bắt đầu tự động đánh giá</button>
-            <button class="button stop-btn" id="stopBtn">Dừng lại</button>
-            <button class="button settings-btn" id="settingsBtn">About Extension</button>
+            <div id="status" class="status idle">
+                <i class="fas fa-circle-check" style="margin-right: 8px;"></i>
+                Trạng thái: Sẵn sàng
+            </div>
         </div>
         
-        <div class="progress-section">
-            <div class="progress-text">Tiến độ: <span id="progress">0/0</span></div>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
+        <div class="section">
+            <div class="progress-section">
+                <div class="progress-text">
+                    <i class="fas fa-chart-line" style="margin-right: 8px;"></i>
+                    Tiến độ: <span id="progress">0/0</span>
+                </div>
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <button id="startBtn" class="button start-btn">
+                <i class="fas fa-play"></i>
+                Bắt đầu đánh giá
+            </button>
+            <button id="stopBtn" class="button stop-btn" disabled>
+                <i class="fas fa-stop"></i>
+                Dừng đánh giá
+            </button>
+            <button id="settingsBtn" class="button settings-btn">
+                <i class="fas fa-info-circle"></i>
+                Thông tin
+            </button>
+        </div>
+        
+        <div class="section">
+            <div class="config-section">
+                <h4>
+                    <i class="fas fa-cog"></i>
+                    Cài đặt thời gian chờ
+                </h4>
+                <div class="delay-options">
+                    <label class="delay-option">
+                        <input type="radio" name="delay" value="0.5">
+                        0.5 giây
+                    </label>
+                    <label class="delay-option">
+                        <input type="radio" name="delay" value="1" checked>
+                        1 giây
+                    </label>
+                    <label class="delay-option">
+                        <input type="radio" name="delay" value="2">
+                        2 giây
+                    </label>
+                    <label class="delay-option">
+                        <input type="radio" name="delay" value="3">
+                        3 giây
+                    </label>
+                </div>
+                
+                <label>
+                    <input type="checkbox" id="autoStart" checked>
+                    <i class="fas fa-rocket" style="margin-right: 4px;"></i>
+                    Tự động bắt đầu khi vào trang
+                </label>
+                
+                <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(226, 232, 240, 0.5);">
+                    <h4 style="margin: 0 0 12px 0; font-size: 14px; color: #1e293b; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-palette"></i>
+                        Chủ đề màu sắc
+                    </h4>
+                    <div class="theme-selector">
+                        <button class="theme-btn active" data-theme="ocean" title="Ocean Blue">
+                            <div class="theme-preview" style="background: linear-gradient(135deg, #0369a1, #38bdf8);"></div>
+                        </button>
+                        <button class="theme-btn" data-theme="sunset" title="Sunset Orange">
+                            <div class="theme-preview" style="background: linear-gradient(135deg, #ea580c, #fb923c, #fbbf24);"></div>
+                        </button>
+                        <button class="theme-btn" data-theme="forest" title="Forest Green">
+                            <div class="theme-preview" style="background: linear-gradient(135deg, #065f46, #059669, #10b981);"></div>
+                        </button>
+                        <button class="theme-btn" data-theme="cosmic" title="Cosmic Purple">
+                            <div class="theme-preview" style="background: linear-gradient(135deg, #7c3aed, #a855f7, #c084fc);"></div>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- About Modal -->
+    <!-- Modal About -->
     <div id="aboutModal" class="modal">
         <div class="modal-content">
+            <span class="close" id="closeModal">
+                <i class="fas fa-times"></i>
+            </span>
             <div class="modal-header">
-                <h3>🎓 Auto Course Review</h3>
+                <h3>
+                    <i class="fas fa-graduation-cap" style="margin-right: 8px;"></i>
+                    Auto Course Review
+                </h3>
+                <p style="color: #64748b; font-size: 14px; margin: 8px 0;">Version 2.0.0</p>
             </div>
             <div class="modal-body">
-                <p><strong>✨ Tính năng:</strong></p>
-                <ul>
-                    <li>Tự động quét và đánh giá môn học</li>
-                    <li>Hỗ trợ nhiều tốc độ xử lý</li>
-                    <li>Tự động điền form với rating cao nhất</li>
-                    <li>Xử lý tự động các trang Survey và Result</li>
-                </ul>
+                <p style="color: #475569; line-height: 1.6; margin-bottom: 16px; font-size: 14px;">
+                    <i class="fas fa-info-circle" style="color: #3b82f6; margin-right: 8px;"></i>
+                    Tiện ích giúp tự động đánh giá môn học trên hệ thống TDTU một cách nhanh chóng và hiệu quả.
+                </p>
                 
-                <p><strong>⚙️ Cách sử dụng:</strong></p>
-                <ol>
-                    <li>Chọn tốc độ xử lý phù hợp</li>
-                    <li>Nhấn "Bắt đầu tự động đánh giá"</li>
-                    <li>Extension sẽ tự động xử lý tất cả</li>
-                </ol>
+                <div style="background: rgba(59, 130, 246, 0.1); padding: 16px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #3b82f6;">
+                    <h4 style="color: #1e40af; margin: 0 0 8px 0; font-size: 14px;">
+                        <i class="fas fa-lightbulb" style="margin-right: 8px;"></i>
+                        Hướng dẫn sử dụng:
+                    </h4>
+                    <ul style="color: #475569; font-size: 13px; line-height: 1.5; margin: 0; padding-left: 20px;">
+                        <li>Truy cập trang đánh giá môn học TDTU</li>
+                        <li>Nhấn "Bắt đầu đánh giá" để tự động hóa</li>
+                        <li>Điều chỉnh thời gian chờ phù hợp</li>
+                    </ul>
+                </div>
                 
-                <p><strong>💡 Lưu ý:</strong> Tốc độ "Tức thì (0s)" có thể bị chặn bởi một số website.</p>
-                
-                <div style="text-align: center; margin: 20px 0;">
-                    <p><strong>👨‍💻 Developed by @iannwendy</strong></p>
-                    <div class="social-links">
-                        <a href="#" class="social-link github" id="githubLink">
-                            🔗 GitHub
-                        </a>
-                        <a href="#" class="social-link instagram" id="instagramLink">
-                            📸 Instagram
-                        </a>
-                    </div>
+                <div class="social-links">
+                    <a href="#" id="githubLink" class="social-link github-link">
+                        <i class="fab fa-github"></i>
+                        GitHub
+                    </a>
+                    <a href="#" id="instagramLink" class="social-link instagram-link">
+                        <i class="fab fa-instagram"></i>
+                        Instagram
+                    </a>
                 </div>
             </div>
-            <button class="close-btn" id="closeModal">Đóng</button>
         </div>
     </div>
 

@@ -1,19 +1,29 @@
 # 🎓 TDTU Auto Course Review Extension
 
-A Chrome extension designed to automatically fill out course evaluation forms for Ton Duc Thang University (TDTU) students.
+A modern Chrome extension designed to automatically fill out course evaluation forms for Ton Duc Thang University (TDTU) students with a beautiful, contemporary interface.
 
 ![Extension Preview](https://img.shields.io/badge/Chrome-Extension-green?style=for-the-badge&logo=googlechrome)
-![Version](https://img.shields.io/badge/Version-1.0.0-blue?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-2.0.0-blue?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
+![UI](https://img.shields.io/badge/UI-Modern%20Glass%20Morphism-purple?style=for-the-badge)
 
 ## ✨ Features
 
+### 🤖 Core Automation
 - 🚀 **Automatic Course Scanning**: Automatically detects unevaluated courses
-- ⚡ **Multiple Speed Options**: Choose from instant (0s), fast (0.5s), normal (1s), or slow (2s)
+- ⚡ **Multiple Speed Options**: Choose from 0.5s, 1s, 2s, or 3s delays
 - 🎯 **Smart Form Filling**: Automatically fills evaluation forms with highest ratings
 - 🔄 **Multi-page Handling**: Seamlessly handles Survey.aspx and Result.aspx pages
-- 📊 **Progress Tracking**: Visual progress bar and real-time status updates
-- 🎨 **Modern UI**: Beautiful gradient design with smooth animations
+- 📊 **Progress Tracking**: Visual progress bar with real-time status updates
+
+### 🎨 Modern UI/UX (v2.0.0)
+- ✨ **Glass Morphism Design**: Modern translucent interface with backdrop blur
+- 🌈 **4 Beautiful Themes**: Ocean Blue, Sunset Orange, Forest Green, Cosmic Purple
+- 🎭 **Advanced Animations**: Floating logos, ripple effects, smooth transitions
+- 💫 **Visual Feedback**: Success notifications, celebration effects, loading states
+- 🎪 **Micro-interactions**: Hover effects, button animations, particle backgrounds
+- 🖼️ **Custom Form Controls**: Redesigned checkboxes and radio buttons
+- 📱 **Responsive Design**: Adaptive layout with enhanced visual hierarchy
 
 ## 🛠️ Installation
 
@@ -140,12 +150,23 @@ TDTUAutoCourseReview/
 
 ## 📝 Changelog
 
+### Version 2.0.0 (Current) 🎉
+- 🎨 **MAJOR UI/UX REDESIGN**: Complete interface overhaul with modern design
+- ✨ **Glass Morphism**: Implemented backdrop blur and translucent effects
+- 🌈 **Theme Switcher**: 4 beautiful themes with smooth transitions
+- 🎭 **Advanced Animations**: Ripple effects, floating animations, celebration effects
+- 💫 **Visual Feedback**: Success notifications and error handling
+- 🔧 **Bug Fixes**: Resolved function hoisting and reference errors
+- 📱 **Enhanced UX**: Improved spacing, typography, and micro-interactions
+
 ### Version 1.0.0
 - ✨ Initial release
 - 🚀 Automatic course evaluation
-- 🎨 Modern UI with gradient design
+- 🎨 Basic UI with gradient design
 - ⚡ Multiple speed options
 - 📊 Progress tracking
+
+For detailed changelog, see [CHANGELOG.md](CHANGELOG.md)
 
 ## 🤝 Contributing
 

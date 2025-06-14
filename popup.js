@@ -1,6 +1,69 @@
 // Lưu trữ trạng thái extension
 let isRunning = false;
 
+// Helper functions - định nghĩa trước khi sử dụng
+function switchTheme(theme) {
+    const body = document.body;
+    
+    // Remove all theme classes
+    body.classList.remove('theme-ocean', 'theme-sunset', 'theme-forest', 'theme-cosmic');
+    
+    // Add the selected theme class
+    if (theme !== 'ocean') {
+        body.classList.add(`theme-${theme}`);
+    }
+    
+    // Add smooth transition effect
+    body.style.transition = 'background 0.8s ease-in-out';
+    
+    // Remove transition after animation completes
+    setTimeout(() => {
+        body.style.transition = '';
+    }, 800);
+    
+    console.log('Theme switched to:', theme);
+    
+    // Show success feedback
+    showFeedback('🎨 Đã thay đổi chủ đề!');
+}
+
+function createRippleEffect(event) {
+    const button = event.currentTarget;
+    const rect = button.getBoundingClientRect();
+    const ripple = document.createElement('div');
+    const size = Math.max(rect.width, rect.height);
+    
+    ripple.className = 'click-ripple';
+    ripple.style.width = ripple.style.height = '0px';
+    ripple.style.left = (event.clientX - rect.left - size / 2) + 'px';
+    ripple.style.top = (event.clientY - rect.top - size / 2) + 'px';
+    
+    button.appendChild(ripple);
+    
+    setTimeout(() => {
+        ripple.remove();
+    }, 800);
+}
+
+function showFeedback(message) {
+    const feedback = document.createElement('div');
+    feedback.className = 'success-feedback';
+    feedback.textContent = message;
+    
+    document.body.appendChild(feedback);
+    
+    setTimeout(() => {
+        feedback.remove();
+    }, 2000);
+}
+
+function addButtonEffects() {
+    // Add ripple effect to all buttons
+    document.querySelectorAll('.button, .theme-btn').forEach(button => {
+        button.addEventListener('click', createRippleEffect);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Khởi tạo elements
     const startBtn = document.getElementById('startBtn');
@@ -67,18 +130,37 @@ document.addEventListener('DOMContentLoaded', function() {
             saveSettings();
         });
     });
+    
+    // Theme switcher event listeners
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const theme = this.dataset.theme;
+            switchTheme(theme);
+            
+            // Update active state
+            document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Save theme preference
+            chrome.storage.sync.set({ theme: theme });
+        });
+    });
 
     // Kiểm tra trạng thái hiện tại
     checkCurrentStatus();
     
     // Cập nhật UI ban đầu
     updateDelaySelection();
+    
+    // Add button effects
+    addButtonEffects();
 });
 
 function loadSettings() {
-    chrome.storage.sync.get(['delay', 'autoStart'], function(result) {
+    chrome.storage.sync.get(['delay', 'autoStart', 'theme'], function(result) {
         const delay = result.delay !== undefined ? result.delay : 1; // Mặc định 1 giây
         const autoStart = result.autoStart !== false;
+        const theme = result.theme || 'ocean'; // Mặc định ocean theme
         
         // Set delay radio button
         const delayRadio = document.querySelector(`input[name="delay"][value="${delay}"]`);
@@ -88,6 +170,14 @@ function loadSettings() {
         
         // Set auto start checkbox
         document.getElementById('autoStart').checked = autoStart;
+        
+        // Set theme
+        switchTheme(theme);
+        const themeBtn = document.querySelector(`[data-theme="${theme}"]`);
+        if (themeBtn) {
+            document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+            themeBtn.classList.add('active');
+        }
         
         updateDelaySelection();
     });
@@ -170,14 +260,38 @@ function openSettings() {
 function updateStatus(type, message) {
     const statusDiv = document.getElementById('status');
     statusDiv.className = `status ${type}`;
-    statusDiv.textContent = `Trạng thái: ${message}`;
+    
+    let icon = '';
+    switch(type) {
+        case 'idle':
+            icon = '<i class="fas fa-circle-check" style="margin-right: 8px;"></i>';
+            break;
+        case 'running':
+            icon = '<i class="fas fa-spinner fa-spin" style="margin-right: 8px;"></i>';
+            break;
+        case 'stopped':
+            icon = '<i class="fas fa-circle-xmark" style="margin-right: 8px;"></i>';
+            break;
+        default:
+            icon = '<i class="fas fa-circle-info" style="margin-right: 8px;"></i>';
+    }
+    
+    statusDiv.innerHTML = `${icon}Trạng thái: ${message}`;
 }
 
 function updateProgress(current, total) {
     const progressSpan = document.getElementById('progress');
     const progressFill = document.getElementById('progressFill');
+    const progressText = document.querySelector('.progress-text');
     
     progressSpan.textContent = `${current}/${total}`;
+    
+    // Add loading animation when in progress
+    if (current < total && total > 0) {
+        progressText.classList.add('loading');
+    } else {
+        progressText.classList.remove('loading');
+    }
     
     // Cập nhật progress bar
     if (total > 0) {
@@ -228,6 +342,15 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         updateStatus('idle', 'Hoàn thành tất cả môn học! 🎉');
         isRunning = false;
         resetButtons();
+        
+        // Show celebration effect
+        showFeedback('🎉 Hoàn thành! Tất cả môn học đã được đánh giá!');
+        
+        // Trigger celebration animation
+        document.body.classList.add('celebration');
+        setTimeout(() => {
+            document.body.classList.remove('celebration');
+        }, 2000);
         
         // Reset progress bar sau 3 giây
         setTimeout(() => {
