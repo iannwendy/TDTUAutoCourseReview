@@ -17,6 +17,19 @@ A modern Chrome extension designed to automatically fill out course evaluation f
 - 📊 **Progress Tracking**: Visual progress bar with real-time status updates
 - 💾 **Persistent Settings**: Your preferences are saved and restored automatically
 
+### 🎨 Modern UI/UX
+- 🌟 **Loading Screen Animation**: Beautiful startup animation with TDTU branding
+- 🏛️ **Official TDTU Logo**: Integrated official university logo throughout the interface
+- 🎭 **Glass Morphism Design**: Modern translucent interface with backdrop blur effects
+- 🌈 **4 Beautiful Themes**: Ocean Blue, Sunset Orange, Forest Green, Cosmic Purple
+- ✨ **Advanced Animations**: Ripple effects, floating animations, celebration effects
+- 🎯 **Visual Feedback System**: Success notifications and smooth transitions
+
+### ⚡ Performance & Reliability
+- 🔧 **Fixed Settings Persistence**: No more lost settings after page refresh
+- 🎛️ **Proper Delay Handling**: Extension now correctly uses your selected timing
+- 🚀 **Optimized Navigation**: Faster button clicks (500ms) for quicker processing
+- 🛡️ **Enhanced Error Handling**: Better error detection and recovery
 
 ## 🛠️ Installation
 
