@@ -17,19 +17,6 @@ A modern Chrome extension designed to automatically fill out course evaluation f
 - 📊 **Progress Tracking**: Visual progress bar with real-time status updates
 - 💾 **Persistent Settings**: Your preferences are saved and restored automatically
 
-### 🎨 Modern UI/UX
-- 🌟 **Loading Screen Animation**: Beautiful startup animation with TDTU branding
-- 🏛️ **Official TDTU Logo**: Integrated official university logo throughout the interface
-- 🎭 **Glass Morphism Design**: Modern translucent interface with backdrop blur effects
-- 🌈 **4 Beautiful Themes**: Ocean Blue, Sunset Orange, Forest Green, Cosmic Purple
-- ✨ **Advanced Animations**: Ripple effects, floating animations, celebration effects
-- 🎯 **Visual Feedback System**: Success notifications and smooth transitions
-
-### ⚡ Performance & Reliability
-- 🔧 **Fixed Settings Persistence**: No more lost settings after page refresh
-- 🎛️ **Proper Delay Handling**: Extension now correctly uses your selected timing
-- 🚀 **Optimized Navigation**: Faster button clicks (500ms) for quicker processing
-- 🛡️ **Enhanced Error Handling**: Better error detection and recovery
 
 ## 🛠️ Installation
 
@@ -159,41 +146,7 @@ TDTUAutoCourseReview/
 
 ## 📝 Changelog
 
-### Version 2.1.0 (Current) 🎉
-- 🌟 **Loading Screen Animation**: Beautiful startup screen with TDTU branding
-- 🏛️ **Official TDTU Logo**: Integrated official university logo
-- 🐛 **Critical Bug Fixes**: Fixed settings persistence and delay handling issues
-- ⚡ **Performance Improvements**: Optimized button delays and error handling
-- 🎨 **Enhanced Branding**: Updated to "TDTU Auto Course Review"
-- 📁 **Better Organization**: Reorganized logo files and project structure
-
-### Version 2.0.0 🎨
-- 🎨 **MAJOR UI/UX REDESIGN**: Complete interface overhaul with modern design
-- ✨ **Glass Morphism**: Implemented backdrop blur and translucent effects
-- 🌈 **Theme Switcher**: 4 beautiful themes with smooth transitions
-- 🎭 **Advanced Animations**: Ripple effects, floating animations, celebration effects
-- 💫 **Visual Feedback**: Success notifications and error handling
-- 🔧 **Bug Fixes**: Resolved function hoisting and reference errors
-- 📱 **Enhanced UX**: Improved spacing, typography, and micro-interactions
-
-### Version 1.0.0
-- ✨ Initial release
-- 🚀 Automatic course evaluation
-- 🎨 Basic UI with gradient design
-- ⚡ Multiple speed options
-- 📊 Progress tracking
-
 For detailed changelog, see [CHANGELOG.md](CHANGELOG.md)
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
 
 ## 📄 License
 
