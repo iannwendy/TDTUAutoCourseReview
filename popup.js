@@ -38,18 +38,30 @@ function showLoadingScreen() {
             // Hide after 1 second
             setTimeout(() => {
                 hideLoadingScreen();
-            }, 1000);
+            }, 500);
         });
     }
 }
 
 function hideLoadingScreen() {
     const loadingOverlay = document.getElementById('loadingOverlay');
+    const container = document.querySelector('.container');
+    
     if (loadingOverlay) {
+        // Start fading out loading screen
         loadingOverlay.classList.add('fade-out');
+        
+        // After a delay, show the main container with smooth animation
+        setTimeout(() => {
+            if (container) {
+                container.classList.add('loaded');
+            }
+        }, 100);
+        
+        // Hide loading overlay after animation completes
         setTimeout(() => {
             loadingOverlay.style.display = 'none';
-        }, 500); // Wait for fade-out animation
+        }, 400); // tối ưu theo hiệu ứng nhanh hơn
     }
 }
 

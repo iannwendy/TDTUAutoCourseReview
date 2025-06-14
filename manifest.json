@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Auto Course Review",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Automatic course evaluation extension for TDTU students to streamline teaching quality assessments.",
   "permissions": [
     "activeTab",
