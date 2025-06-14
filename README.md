@@ -16,15 +16,6 @@ A modern Chrome extension designed to automatically fill out course evaluation f
 - 🔄 **Multi-page Handling**: Seamlessly handles Survey.aspx and Result.aspx pages
 - 📊 **Progress Tracking**: Visual progress bar with real-time status updates
 
-### 🎨 Modern UI/UX (v2.0.0)
-- ✨ **Glass Morphism Design**: Modern translucent interface with backdrop blur
-- 🌈 **4 Beautiful Themes**: Ocean Blue, Sunset Orange, Forest Green, Cosmic Purple
-- 🎭 **Advanced Animations**: Floating logos, ripple effects, smooth transitions
-- 💫 **Visual Feedback**: Success notifications, celebration effects, loading states
-- 🎪 **Micro-interactions**: Hover effects, button animations, particle backgrounds
-- 🖼️ **Custom Form Controls**: Redesigned checkboxes and radio buttons
-- 📱 **Responsive Design**: Adaptive layout with enhanced visual hierarchy
-
 ## 🛠️ Installation
 
 ### Method 1: Load Unpacked Extension (Recommended)
