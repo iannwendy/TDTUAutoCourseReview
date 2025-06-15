@@ -10,18 +10,27 @@ A modern Chrome extension designed to automatically fill out course evaluation f
 
 ## 📸 Demo
 
-<p align="center">
-  <img width="560" src="introduction/demo.png" alt="TDTU Auto Course Review Extension Demo" />
-</p>
+<div align="center">
+  <img width="560" src="introduction/demo.png" alt="TDTU Auto Course Review Extension Demo" style="border-radius: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.15);" />
+</div>
 
 ## 🎬 Video Introduction
 
-<p align="center">
-  <video width="560" controls>
-    <source src="introduction/introduction.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</p>
+> **📹 Hướng dẫn sử dụng chi tiết**  
+> Xem video demo để hiểu cách cài đặt và sử dụng extension một cách trực quan nhất.
+
+<div align="center">
+
+<!-- Drag and drop your introduction.mp4 file here to get GitHub-hosted URL -->
+<!-- Then replace this comment with the generated video embed code -->
+
+**🎥 Video đang được cập nhật...**
+
+*Để xem video hướng dẫn, vui lòng truy cập thư mục `introduction/introduction.mp4` trong repository*
+
+**Hoặc tải video về máy:** [📥 Tải video hướng dẫn](introduction/introduction.mp4)
+
+</div>
 
 ## ✨ Features
 
