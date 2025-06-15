@@ -1,4 +1,37 @@
-# OS generated files
+# Old Frontend Files (HTML/CSS/JS)
+src/popup/popup.html
+src/popup/popup.js
+src/popup/App.css
+src/popup/App.tsx
+src/popup/index.tsx
+src/types/chrome.d.ts
+
+# Backup Files
+backup/
+
+# Node.js Dependencies
+react-popup/node_modules/
+node_modules/
+
+# Build Artifacts
+react-popup/dist/
+dist/
+build/
+
+# Development Files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS Files
 .DS_Store
 .DS_Store?
 ._*
@@ -7,33 +40,33 @@
 ehthumbs.db
 Thumbs.db
 
-# IDE files
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
+# Temporary Files
+*.tmp
+*.temp
+.cache/
 
-# Logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Package Lock Files (optional - uncomment if needed)
+# package-lock.json
+# yarn.lock
+
+# Environment Files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Coverage Reports
+coverage/
+*.lcov
+
+# TypeScript Build Info
+*.tsbuildinfo
+
+# Webpack Build Info
+.webpack/
 
 # Chrome extension specific
 *.crx
 *.pem
-key.pem
-
-# Temporary files
-*.tmp
-*.temp
-
-# Node modules (if using build tools)
-node_modules/
-package-lock.json
-yarn.lock
-
-# Build outputs
-dist/
-build/ 
+key.pem 

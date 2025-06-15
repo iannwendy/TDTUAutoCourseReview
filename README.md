@@ -1,11 +1,12 @@
 # 🎓 TDTU Auto Course Review Extension
 
-A modern Chrome extension designed to automatically fill out course evaluation forms for Ton Duc Thang University (TDTU) students with a beautiful, contemporary interface featuring official TDTU branding.
+A modern Chrome extension designed to automatically fill out course evaluation forms for Ton Duc Thang University (TDTU) students with a beautiful, contemporary React + TypeScript interface featuring official TDTU branding.
 
 ![Extension Preview](https://img.shields.io/badge/Chrome-Extension-green?style=for-the-badge&logo=googlechrome)
-![Version](https://img.shields.io/badge/Version-2.1.0-blue?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-3.0.0-blue?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
-![UI](https://img.shields.io/badge/UI-Modern%20Glass%20Morphism-purple?style=for-the-badge)
+![UI](https://img.shields.io/badge/UI-React%20+%20TypeScript-purple?style=for-the-badge)
+![Framework](https://img.shields.io/badge/Frontend-React%2018-61DAFB?style=for-the-badge&logo=react)
 
 ## ✨ Features
 
@@ -15,7 +16,10 @@ A modern Chrome extension designed to automatically fill out course evaluation f
 - 🔄 **Multi-page Handling**: Seamlessly handles Survey.aspx and Result.aspx pages
 - 📊 **Progress Tracking**: Visual progress bar with real-time status updates
 - 💾 **Persistent Settings**: Your preferences are saved and restored automatically
-
+- 🎨 **Modern React UI**: Built with React 18 + TypeScript for superior performance
+- 🌈 **Glass Morphism Design**: Beautiful modern interface with backdrop blur effects
+- 🎭 **Dynamic Themes**: Multiple theme options with smooth animations
+- 🏢 **Official TDTU Branding**: Integrated with official TDTU logo and colors
 
 ## 🛠️ Installation
 
@@ -88,36 +92,74 @@ choosesurvey.aspx → Survey.aspx → Result.aspx → Back to choosesurvey.aspx
 |---------|-------------|---------|
 | Processing Speed | Delay between actions | 1 second |
 | Auto Start | Start automatically when page loads | Enabled |
+| Theme | Visual theme selection | Ocean Blue |
 
 ## 🔧 Technical Details
+
+### Architecture
+- **Frontend**: React 18 + TypeScript
+- **Build System**: Webpack 5 with custom configuration
+- **Styling**: Modern CSS with Glass Morphism effects
+- **State Management**: React Hooks (useState, useEffect)
+- **Chrome APIs**: Manifest V3 with service workers
 
 ### File Structure
 ```
 TDTUAutoCourseReview/
-├── manifest.json          # Extension configuration
-├── popup.html             # Extension popup interface
-├── popup.js               # Popup functionality
-├── content.js             # Main automation logic
-├── tdtu-survey.js         # Survey form handling
-├── background.js          # Service worker
-├── icons/                 # Extension icons and logos
-│   ├── icon16.png         # Extension icons
+├── manifest.json              # Extension configuration
+├── react-popup/               # React frontend source
+│   ├── src/
+│   │   ├── popup/
+│   │   │   ├── App.tsx        # Main React component
+│   │   │   ├── App.css        # Modern styling
+│   │   │   └── index.tsx      # React entry point
+│   │   ├── types/
+│   │   │   └── chrome.d.ts    # TypeScript definitions
+│   │   └── assets/
+│   │       └── TDTU_logo.png  # Official TDTU logo
+│   ├── webpack.config.js      # Build configuration
+│   ├── tsconfig.json          # TypeScript configuration
+│   └── package.json           # Dependencies
+├── content.js                 # Main automation logic
+├── tdtu-survey.js            # Survey form handling
+├── background.js             # Service worker
+├── icons/                    # Extension icons and logos
+│   ├── icon16.png            # Extension icons
 │   ├── icon32.png
 │   ├── icon48.png
 │   ├── icon64.png
 │   ├── icon128.png
-│   ├── logo.png           # Original logo
-│   └── TDTU_logo.png      # Official TDTU logo
-├── CHANGELOG.md           # Version history
-└── README.md              # This file
+│   ├── logo.png              # Original logo
+│   └── TDTU_logo.png         # Official TDTU logo
+├── switch-to-react.sh        # Build automation script
+├── switch-to-original.sh     # Fallback script
+├── CHANGELOG.md              # Version history
+└── README.md                 # This file
 ```
 
 ### Key Technologies
+- **React 18**: Latest React with concurrent features
+- **TypeScript**: Type-safe development
+- **Webpack 5**: Modern bundling with asset optimization
 - **Manifest V3**: Latest Chrome extension standard
 - **Content Scripts**: DOM manipulation and form automation
 - **Service Worker**: Background processing
 - **Chrome Storage API**: Settings persistence
-- **Modern CSS**: Gradient designs and animations
+- **Modern CSS**: Glass morphism and gradient designs
+
+### Build Process
+```bash
+# Development
+cd react-popup
+npm install
+npm run dev
+
+# Production Build
+npm run build
+
+# Deploy to Extension
+./switch-to-react.sh
+```
 
 ## 🛡️ Privacy & Security
 
@@ -125,6 +167,7 @@ TDTUAutoCourseReview/
 - ✅ **Local Processing**: All operations happen locally in your browser
 - ✅ **Minimal Permissions**: Only requests necessary permissions
 - ✅ **Open Source**: Full source code available for review
+- ✅ **Type Safety**: TypeScript ensures code reliability
 
 ## 🐛 Troubleshooting
 
@@ -143,6 +186,11 @@ TDTUAutoCourseReview/
 - Reload the extension in `chrome://extensions/`
 - Make sure the extension is enabled
 
+**Build errors?**
+- Ensure Node.js and npm are installed
+- Run `npm install` in the `react-popup` directory
+- Check TypeScript compilation with `npm run build`
+
 ## 📝 Changelog
 
 For detailed changelog, see [CHANGELOG.md](CHANGELOG.md)
@@ -155,6 +203,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **@iannwendy**
 - 🔗 GitHub: [@iannwendy](https://github.com/iannwendy)
+- 📘 Facebook: [@iannwendy2](https://facebook.com/iannwendy2)
 - 📸 Instagram: [@iannwendy](https://instagram.com/iannwendy)
 
 ## ⚠️ Disclaimer
@@ -164,7 +213,7 @@ This extension is created for educational purposes and to help TDTU students eff
 ---
 
 <div align="center">
-  <p>Made with ❤️ for TDTU students</p>
+  <p>Made with ❤️ for TDTU students using React + TypeScript</p>
   <p>⭐ Star this repo if it helped you!</p>
   <p>© 2025 Bao Minh-Nguyen Co., Ltd. All Rights Reserved.</p>
 </div> 
