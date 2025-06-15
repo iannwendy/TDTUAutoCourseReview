@@ -6,8 +6,18 @@ src/popup/App.tsx
 src/popup/index.tsx
 src/types/chrome.d.ts
 
+# Current HTML/JS files (old version)
+popup.html
+popup.js
+
+# Development and Migration Files
+REACT_MIGRATION_GUIDE.md
+switch-to-original.sh
+switch-to-react.sh
+
 # Backup Files
 backup/
+original-backup/
 
 # Node.js Dependencies
 react-popup/node_modules/
