@@ -21,14 +21,17 @@ A modern Chrome extension designed to automatically fill out course evaluation f
 
 <div align="center">
 
-<!-- Drag and drop your introduction.mp4 file here to get GitHub-hosted URL -->
-<!-- Then replace this comment with the generated video embed code -->
+### 🎥 Video Demo
 
-**🎥 Video đang được cập nhật...**
+**[▶️ Xem Video Hướng Dẫn](https://github.com/iannwendy/TDTUAutoCourseReview/raw/main/introduction/introduction.mp4)**
 
-*Để xem video hướng dẫn, vui lòng truy cập thư mục `introduction/introduction.mp4` trong repository*
+*Click vào link trên để xem video hướng dẫn chi tiết*
 
-**Hoặc tải video về máy:** [📥 Tải video hướng dẫn](introduction/introduction.mp4)
+---
+
+**📱 Không xem được video?**
+- [📥 Tải video về máy](https://github.com/iannwendy/TDTUAutoCourseReview/raw/main/introduction/introduction.mp4) (Right-click → Save as)
+- Hoặc truy cập thư mục `introduction/` trong repository
 
 </div>
 
