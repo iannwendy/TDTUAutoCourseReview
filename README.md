@@ -8,10 +8,25 @@ A modern Chrome extension designed to automatically fill out course evaluation f
 ![UI](https://img.shields.io/badge/UI-React%20+%20TypeScript-purple?style=for-the-badge)
 ![Framework](https://img.shields.io/badge/Frontend-React%2018-61DAFB?style=for-the-badge&logo=react)
 
+## 📸 Demo
+
+<p align="center">
+  <img width="560" src="introduction/demo.png" alt="TDTU Auto Course Review Extension Demo" />
+</p>
+
+## 🎬 Video Introduction
+
+<p align="center">
+  <video width="560" controls>
+    <source src="introduction/introduction.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</p>
+
 ## ✨ Features
 
 - 🚀 **Automatic Course Scanning**: Automatically detects unevaluated courses
-- ⚡ **Multiple Speed Options**: Choose from 0.5s, 1s, 2s, or 3s delays
+- ⚡ **Multiple Speed Options**: Choose from 0.5s, 1s or 2s delays
 - 🎯 **Smart Form Filling**: Automatically fills evaluation forms with highest ratings
 - 🔄 **Multi-page Handling**: Seamlessly handles Survey.aspx and Result.aspx pages
 - 📊 **Progress Tracking**: Visual progress bar with real-time status updates

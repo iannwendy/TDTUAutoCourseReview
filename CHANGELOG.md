@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [3.0.0] - 2025-01-XX
+## [3.0.0] - 2025-06-15
 
 ### 🚀 MAJOR RELEASE: React + TypeScript Conversion
 - **BREAKING**: Complete frontend rewrite from vanilla HTML/CSS/JS to React 18 + TypeScript
