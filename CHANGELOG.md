@@ -2,7 +2,7 @@
 
 All notable changes to TDTU Auto Course Review Extension will be documented in this file.
 
-## [3.1.0] - 2025-01-08
+## [3.1.0] - 2025-06-16
 
 ### Added
 - Enhanced smooth scrolling for Survey.aspx page
@@ -26,7 +26,7 @@ All notable changes to TDTU Auto Course Review Extension will be documented in t
 - Updated manifest for web accessible resources
 - English documentation updates
 
-## [2.2.0] - 2025-01-07
+## [2.2.0] - 2025-06-15
 
 ### Added
 - Initial smooth scrolling functionality
@@ -36,7 +36,7 @@ All notable changes to TDTU Auto Course Review Extension will be documented in t
 - Form detection and processing
 - Error handling for survey pages
 
-## [2.1.0] - 2024-12-XX
+## [2.1.0] - 2025-06-14
 
 ### Added
 - React + TypeScript modern UI
@@ -44,14 +44,14 @@ All notable changes to TDTU Auto Course Review Extension will be documented in t
 - Multiple theme support
 - Webpack 5 performance enhancements
 
-## [2.0.0] - 2024-11-XX
+## [2.0.0] - 2025-06-13
 
 ### Major Release
 - Complete rewrite with modern architecture
 - Manifest V3 support
 - Enhanced automation capabilities
 
-## [1.x.x] - 2024-XX-XX
+## [1.x.x] - 2025-06-12
 
 ### Initial Releases
 - Basic course evaluation automation
