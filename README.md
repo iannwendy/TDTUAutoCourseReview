@@ -16,22 +16,22 @@ A modern Chrome extension designed to automatically fill out course evaluation f
 
 ## 🎬 Video Introduction
 
-> **📹 Hướng dẫn sử dụng chi tiết**  
-> Xem video demo để hiểu cách cài đặt và sử dụng extension một cách trực quan nhất.
+> **📹 Detailed Usage Guide**  
+> Watch the demo video to understand how to install and use the extension in the most intuitive way.
 
 <div align="center">
 
 ### 🎥 Video Demo
 
-**[▶️ Xem Video Hướng Dẫn](https://github.com/iannwendy/TDTUAutoCourseReview/raw/main/introduction/introduction.mp4)**
+**[▶️ Watch Tutorial Video](https://github.com/iannwendy/TDTUAutoCourseReview/raw/main/introduction/introduction.mp4)**
 
-*Click vào link trên để xem video hướng dẫn chi tiết*
+*Click the link above to watch the detailed tutorial video*
 
 ---
 
-**📱 Không xem được video?**
-- [📥 Tải video về máy](https://github.com/iannwendy/TDTUAutoCourseReview/raw/main/introduction/introduction.mp4) (Right-click → Save as)
-- Hoặc truy cập thư mục `introduction/` trong repository
+**📱 Can't watch the video?**
+- [📥 Download video to your device](https://github.com/iannwendy/TDTUAutoCourseReview/raw/main/introduction/introduction.mp4) (Right-click → Save as)
+- Or access the `introduction/` folder in the repository
 
 </div>
 
@@ -240,7 +240,7 @@ This extension is created for educational purposes and to help TDTU students eff
 ---
 
 <div align="center">
-  <p>Made with ❤️ for TDTU students using React + TypeScript</p>
+  <p>Made with ❤️ for TDTU students.</p>
   <p>⭐ Star this repo if it helped you!</p>
   <p>© 2025 Bao Minh-Nguyen Co., Ltd. All Rights Reserved.</p>
 </div> 
