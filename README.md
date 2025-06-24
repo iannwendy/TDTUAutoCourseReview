@@ -3,7 +3,7 @@
 A modern Chrome extension designed to automatically fill out course evaluation forms for Ton Duc Thang University (TDTU) students with a beautiful, contemporary React + TypeScript interface featuring official TDTU branding.
 
 ![Extension Preview](https://img.shields.io/badge/Chrome-Extension-green?style=for-the-badge&logo=googlechrome)
-![Version](https://img.shields.io/badge/Version-3.0.0-blue?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-3.1.0-blue?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 ![UI](https://img.shields.io/badge/UI-React%20+%20TypeScript-purple?style=for-the-badge)
 ![Framework](https://img.shields.io/badge/Frontend-React%2018-61DAFB?style=for-the-badge&logo=react)
@@ -11,9 +11,11 @@ A modern Chrome extension designed to automatically fill out course evaluation f
 ## ✨ Features
 
 - 🚀 **Automatic Course Scanning**: Automatically detects unevaluated courses
-- ⚡ **Multiple Speed Options**: Choose from 0.5s, 1s, 2s, or 3s delays
+- ⚡ **Multiple Speed Options**: Choose from 0.5s, 1s or 2s delays
 - 🎯 **Smart Form Filling**: Automatically fills evaluation forms with highest ratings
 - 🔄 **Multi-page Handling**: Seamlessly handles Survey.aspx and Result.aspx pages
+- 📚 **Auto Next E-learning**: Automatically clicks "Next" buttons on TDTU e-learning platform
+- 🎓 **Smart Learning Automation**: Only activates on Unit/Index learning pages, not homepage
 - 📊 **Progress Tracking**: Visual progress bar with real-time status updates
 - 💾 **Persistent Settings**: Your preferences are saved and restored automatically
 - 🎨 **Modern React UI**: Built with React 18 + TypeScript for superior performance
@@ -48,6 +50,8 @@ A modern Chrome extension designed to automatically fill out course evaluation f
 
 ## 🚀 Usage
 
+### 📝 Auto Course Review
+
 1. **Navigate to TDTU Course Evaluation**:
    - Go to `teaching-quality-survey.tdtu.edu.vn/choosesurvey.aspx`
    - Login with your student credentials
@@ -69,6 +73,28 @@ A modern Chrome extension designed to automatically fill out course evaluation f
    - Real-time status updates
    - Visual progress tracking
    - Automatic completion notification
+
+### 📚 Auto Next E-learning
+
+1. **Navigate to TDTU E-learning**:
+   - Go to `elearning-ability.tdtu.edu.vn/Unit/Index/`
+   - Login with your student credentials
+
+2. **Activate Auto Next**:
+   - Click the extension icon in Chrome toolbar
+   - In the "Auto Next (elearning)" section, click "Bật Auto Next"
+   - Extension will automatically start clicking "Next" buttons every 200ms
+
+3. **Monitor Auto Next Status**:
+   - Real-time click counter
+   - Button detection status
+   - Automatic stop when leaving Unit/Index pages
+
+4. **Smart Features**:
+   - Only works on actual learning content pages (`/Unit/Index/`)
+   - Automatically stops if you navigate away from learning pages
+   - Visual highlighting of buttons before clicking
+   - Safe button validation (visibility and enabled state)
 
 ## 📋 How It Works
 

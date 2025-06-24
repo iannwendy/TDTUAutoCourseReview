@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Auto Course Review",
-  "version": "2.2.0",
+  "version": "3.1.0",
   "description": "Automatic course evaluation extension for TDTU students to streamline teaching quality assessments.",
   "permissions": [
     "activeTab",
@@ -26,6 +26,11 @@
     {
       "matches": ["*://teaching-quality-survey.tdtu.edu.vn/*"],
       "js": ["tdtu-survey.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["*://elearning-ability.tdtu.edu.vn/*"],
+      "js": ["elearning-auto-next.js"],
       "run_at": "document_end"
     }
   ],

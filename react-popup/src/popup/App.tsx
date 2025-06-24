@@ -21,12 +21,19 @@ const App: React.FC = () => {
   const [theme, setTheme] = useState('ocean');
   const [showLoading, setShowLoading] = useState(false);
   const [showAboutModal, setShowAboutModal] = useState(false);
+  
+  // Auto Next states
+  const [autoNextEnabled, setAutoNextEnabled] = useState(false);
+  const [autoNextClickCount, setAutoNextClickCount] = useState(0);
+  const [autoNextButtonFound, setAutoNextButtonFound] = useState(false);
 
   // Load settings on component mount
   useEffect(() => {
     loadSettings();
     checkAndShowLoadingScreen();
     checkCurrentStatus();
+    loadAutoNextSettings();
+    checkAutoNextStatus();
     
     // Listen for messages from content script
     const messageListener = (request: any, sender: any, sendResponse: any) => {
@@ -49,6 +56,11 @@ const App: React.FC = () => {
       } else if (request.action === 'error') {
         setStatus({ type: 'stopped', message: 'Có lỗi xảy ra' });
         setIsRunning(false);
+      } else if (request.action === 'autoNextUpdate') {
+        // Update Auto Next status
+        setAutoNextEnabled(request.enabled);
+        setAutoNextClickCount(request.clickCount);
+        setAutoNextButtonFound(request.buttonFound);
       }
     };
 
@@ -95,6 +107,56 @@ const App: React.FC = () => {
   const switchTheme = (newTheme: string) => {
     setTheme(newTheme);
     chrome.storage.sync.set({ theme: newTheme });
+  };
+
+  const loadAutoNextSettings = () => {
+    chrome.storage.sync.get(['autoNextEnabled'], (result) => {
+      setAutoNextEnabled(result.autoNextEnabled !== false);
+    });
+  };
+
+  const checkAutoNextStatus = () => {
+    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+      if (tabs[0] && tabs[0].url?.includes('elearning-ability.tdtu.edu.vn')) {
+        chrome.tabs.sendMessage(tabs[0].id, {action: 'getAutoNextStatus'}, (response) => {
+          if (chrome.runtime.lastError) {
+            // Extension not loaded on this page
+            return;
+          }
+          
+          if (response) {
+            setAutoNextEnabled(response.enabled);
+            setAutoNextClickCount(response.clickCount);
+            setAutoNextButtonFound(response.buttonFound);
+          }
+        });
+      }
+    });
+  };
+
+  const toggleAutoNext = () => {
+    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+      if (tabs[0] && tabs[0].url?.includes('elearning-ability.tdtu.edu.vn')) {
+        const newEnabled = !autoNextEnabled;
+        chrome.tabs.sendMessage(tabs[0].id, {
+          action: 'toggleAutoNext',
+          enabled: newEnabled
+        }, (response) => {
+          if (chrome.runtime.lastError) {
+            showFeedback('❌ Không thể kết nối với trang elearning!');
+            return;
+          }
+          
+          if (response && response.success) {
+            setAutoNextEnabled(response.enabled);
+            chrome.storage.sync.set({ autoNextEnabled: response.enabled });
+            showFeedback(response.enabled ? '✅ Đã bật Auto Next!' : '⏹️ Đã tắt Auto Next!');
+          }
+        });
+      } else {
+        showFeedback('⚠️ Vui lòng truy cập trang elearning-ability.tdtu.edu.vn/Unit/Index/!');
+      }
+    });
   };
 
   const startAutoReview = () => {
@@ -296,6 +358,66 @@ const App: React.FC = () => {
           </div>
         </div>
 
+        {/* Auto Next Feature */}
+        <div className="auto-next-section">
+          <h3>
+            <i className="fas fa-forward"></i>
+            Auto Next (elearning)
+          </h3>
+          
+          {/* Auto Next Status */}
+          <div className={`auto-next-status ${autoNextEnabled ? 'active' : 'inactive'}`}>
+            <div className="status-indicator">
+              {autoNextEnabled ? (
+                <i className="fas fa-play-circle"></i>
+              ) : (
+                <i className="fas fa-pause-circle"></i>
+              )}
+              <span>
+                {autoNextEnabled ? 'Đang hoạt động' : 'Tạm dừng'}
+              </span>
+            </div>
+            
+            <div className="status-details">
+              <div className="status-item">
+                <i className="fas fa-mouse-pointer"></i>
+                <span>Đã click: {autoNextClickCount} lần</span>
+              </div>
+              <div className="status-item">
+                <i className={`fas fa-search ${autoNextButtonFound ? 'text-success' : 'text-warning'}`}></i>
+                <span>
+                  {autoNextButtonFound ? 'Nút Next: Tìm thấy' : 'Nút Next: Không tìm thấy'}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Auto Next Control */}
+          <div className="auto-next-controls">
+            <button 
+              className={`auto-next-toggle ${autoNextEnabled ? 'stop' : 'start'}`}
+              onClick={toggleAutoNext}
+            >
+              {autoNextEnabled ? (
+                <>
+                  <i className="fas fa-stop"></i>
+                  Tắt Auto Next
+                </>
+              ) : (
+                <>
+                  <i className="fas fa-play"></i>
+                  Bật Auto Next
+                </>
+              )}
+            </button>
+          </div>
+
+          <div className="auto-next-info">
+            <i className="fas fa-info-circle"></i>
+            <span>Tự động tìm và click nút "Next" trên trang Unit/Index của elearning (mỗi 200ms)</span>
+          </div>
+        </div>
+
         {/* Theme Switcher */}
         <div className="theme-switcher">
           <h3>Chủ đề</h3>
@@ -351,6 +473,7 @@ const App: React.FC = () => {
                 <h4>Tính năng:</h4>
                 <ul>
                   <li><i className="fas fa-edit"></i> Tự động điền form đánh giá</li>
+                  <li><i className="fas fa-graduation-cap"></i> Tự động hoàn thành học Online các môn Kỹ năng</li>
                   <li><i className="fas fa-palette"></i> Hỗ trợ nhiều chủ đề giao diện</li>
                   <li><i className="fas fa-clock"></i> Tùy chỉnh thời gian chờ</li>
                   <li><i className="fas fa-chart-line"></i> Theo dõi tiến độ real-time</li>

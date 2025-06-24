@@ -2,7 +2,40 @@
 
 All notable changes to this project will be documented in this file.
 
-## [3.0.0] - 2025-01-XX
+## [3.1.0] - 2025-12-20
+
+### ✨ New Features
+- **Auto Next for E-learning**: Added intelligent auto-next functionality for TDTU e-learning platform
+  - Automatically clicks "Next" button on Unit/Index pages (every 200ms)
+  - Smart URL detection - only activates on `elearning-ability.tdtu.edu.vn/Unit/Index/` pages
+  - Real-time status monitoring with click counter and button detection
+  - Automatic stop when navigating away from Unit/Index pages
+
+### 🎯 Smart Learning Features  
+- **Targeted Automation**: Auto-next only works on actual learning content pages, not homepage
+- **Visual Feedback**: Button highlighting with orange glow effect before clicking
+- **Safety Checks**: Validates button visibility and enabled state before clicking
+- **Multiple Selectors**: Fallback button detection with alternative CSS selectors
+
+### 🔧 Technical Improvements
+- **URL Validation**: Added `isCorrectPage()` function for precise page targeting
+- **Enhanced Error Handling**: Better logging and error recovery for button interactions
+- **Performance Optimization**: Efficient DOM observation and button detection
+- **Clean Code Architecture**: Modular functions for better maintainability
+
+### 📱 UI/UX Enhancements
+- **Updated About Modal**: Added "Tự động hoàn thành học Online các môn Kỹ năng" feature description
+- **Better User Guidance**: Clear messaging about required page URL in popup notifications
+- **Status Indicators**: Real-time display of Auto Next status, click count, and button detection
+- **Graduation Cap Icon**: Added appropriate icon for e-learning features
+
+### 🛠️ Extension Management
+- **Auto Start/Stop**: Automatic activation on correct pages and deactivation when leaving
+- **Settings Persistence**: Auto Next preferences saved across browser sessions
+- **Cross-Component Communication**: Seamless popup-content script messaging
+- **Build System**: Updated React build process with latest changes
+
+## [3.0.0] - 2025-06-15
 
 ### 🚀 MAJOR RELEASE: React + TypeScript Conversion
 - **BREAKING**: Complete frontend rewrite from vanilla HTML/CSS/JS to React 18 + TypeScript
