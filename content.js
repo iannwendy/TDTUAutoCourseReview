@@ -376,8 +376,9 @@ function processNextTDTUReview() {
             // Chờ và kiểm tra xem có chuyển trang không
             setTimeout(() => {
                 if (window.location.href.includes('Survey.aspx')) {
-                    console.log('✅ Đã chuyển sang trang Survey.aspx');
-                    // Trang Survey.aspx sẽ được xử lý bởi tdtu-survey.js
+                    console.log('✅ Đã chuyển sang trang Survey.aspx - Sẽ được xử lý bởi tdtu-survey.js với tính năng cuộn mượt');
+                    // Inject tdtu-survey.js script nếu chưa có
+                    injectSurveyScript();
                 } else if (window.location.href.includes('choosesurvey.aspx')) {
                     console.log('⚠️ Vẫn ở trang chọn môn, có thể có lỗi hoặc môn đã được đánh giá');
                     // Tiếp tục môn tiếp theo
@@ -420,8 +421,32 @@ function highlightCurrentRow(row) {
     row.classList.add('auto-review-highlight');
 }
 
+function injectSurveyScript() {
+    // Kiểm tra xem script đã được load chưa
+    if (document.querySelector('script[data-survey-script="true"]')) {
+        console.log('Script tdtu-survey.js đã được load');
+        return;
+    }
+    
+    try {
+        // Load script tdtu-survey.js
+        const script = document.createElement('script');
+        script.src = chrome.runtime.getURL('tdtu-survey.js');
+        script.setAttribute('data-survey-script', 'true');
+        script.onload = () => {
+            console.log('✅ Đã load thành công tdtu-survey.js với tính năng cuộn mượt');
+        };
+        script.onerror = () => {
+            console.error('❌ Lỗi khi load tdtu-survey.js');
+        };
+        (document.head || document.documentElement).appendChild(script);
+    } catch (error) {
+        console.error('Lỗi khi inject survey script:', error);
+    }
+}
+
 function waitForReturnToChoosePage() {
-    console.log('Chờ quay lại trang chọn môn...');
+    console.log('Chờ quay lại trang chọn môn... (Trang Survey.aspx có tính năng cuộn mượt)');
     
     // Kiểm tra định kỳ xem đã quay lại trang chọn môn chưa
     const checkInterval = setInterval(() => {
@@ -429,7 +454,7 @@ function waitForReturnToChoosePage() {
         
         if (window.location.href.includes('choosesurvey.aspx')) {
             clearInterval(checkInterval);
-            console.log('Đã quay lại trang chọn môn, tiếp tục xử lý');
+            console.log('✅ Đã quay lại trang chọn môn sau khi hoàn thành đánh giá với cuộn mượt, tiếp tục xử lý');
             
             // Cập nhật lại danh sách môn học (có thể có thay đổi trạng thái)
             setTimeout(() => {
@@ -439,7 +464,7 @@ function waitForReturnToChoosePage() {
                     console.log(`Tiếp tục xử lý môn ${reviewProgress.current + 1}/${reviewProgress.total}`);
                     processNextTDTUReview();
                 } else {
-                    console.log('Đã hoàn thành tất cả môn học');
+                    console.log('🎉 Đã hoàn thành tất cả môn học với trải nghiệm cuộn mượt!');
                     completeReview();
                 }
             }, currentDelay); // Use configurable delay instead of hardcoded 2000
@@ -450,7 +475,7 @@ function waitForReturnToChoosePage() {
     setTimeout(() => {
         clearInterval(checkInterval);
         if (isAutoReviewRunning) {
-            console.log('Timeout chờ quay lại trang chọn môn sau 60 giây');
+            console.log('⏰ Timeout chờ quay lại trang chọn môn sau 60 giây');
         }
     }, 60000);
 }
@@ -459,11 +484,11 @@ function waitForReturnToChoosePage() {
 window.addEventListener('focus', function() {
     // Khi tab được focus lại, kiểm tra URL
     if (isAutoReviewRunning && window.location.href.includes('choosesurvey.aspx')) {
-        console.log('Tab được focus và đang ở trang chọn môn');
+        console.log('🔄 Tab được focus và đang ở trang chọn môn - Tiếp tục với tính năng cuộn mượt');
         // Có thể đã hoàn thành 1 môn và quay lại
         setTimeout(() => {
             if (isAutoReviewRunning) {
-                console.log('Tiếp tục xử lý môn tiếp theo...');
+                console.log('📋 Tiếp tục xử lý môn tiếp theo với cuộn mượt...');
                 findTDTUReviewElements();
                 if (reviewProgress.current < reviewProgress.total) {
                     processNextTDTUReview();
@@ -601,7 +626,8 @@ function updateProgress() {
 
 function completeReview() {
     isAutoReviewRunning = false;
-    console.log('Hoàn thành auto review');
+    console.log('🎉 Hoàn thành auto review với tính năng cuộn mượt cho trang Survey.aspx');
+    console.log('✨ Trải nghiệm người dùng đã được cải thiện với cuộn mượt theo từng câu hỏi đánh giá 6/6');
     
     // Xóa highlight
     const highlight = document.querySelector('.auto-review-highlight');

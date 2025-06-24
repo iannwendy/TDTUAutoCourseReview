@@ -8,6 +8,33 @@ A modern Chrome extension designed to automatically fill out course evaluation f
 ![UI](https://img.shields.io/badge/UI-React%20+%20TypeScript-purple?style=for-the-badge)
 ![Framework](https://img.shields.io/badge/Frontend-React%2018-61DAFB?style=for-the-badge&logo=react)
 
+## 📸 Demo
+
+<div align="center">
+  <img width="560" src="introduction/demo.png" alt="TDTU Auto Course Review Extension Demo" style="border-radius: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.15);" />
+</div>
+
+## 🎬 Video Introduction
+
+> **📹 Detailed Usage Guide**  
+> Watch the demo video to understand how to install and use the extension in the most intuitive way.
+
+<div align="center">
+
+### 🎥 Video Demo
+
+**[▶️ Watch Tutorial Video](https://github.com/iannwendy/TDTUAutoCourseReview/raw/main/introduction/introduction.mp4)**
+
+*Click the link above to watch the detailed tutorial video*
+
+---
+
+**📱 Can't watch the video?**
+- [📥 Download video to your device](https://github.com/iannwendy/TDTUAutoCourseReview/raw/main/introduction/introduction.mp4) (Right-click → Save as)
+- Or access the `introduction/` folder in the repository
+
+</div>
+
 ## ✨ Features
 
 - 🚀 **Automatic Course Scanning**: Automatically detects unevaluated courses
@@ -21,7 +48,6 @@ A modern Chrome extension designed to automatically fill out course evaluation f
 - 🎨 **Modern React UI**: Built with React 18 + TypeScript for superior performance
 - 🌈 **Glass Morphism Design**: Beautiful modern interface with backdrop blur effects
 - 🎭 **Dynamic Themes**: Multiple theme options with smooth animations
-- 🏢 **Official TDTU Branding**: Integrated with official TDTU logo and colors
 
 ## 🛠️ Installation
 
@@ -112,14 +138,6 @@ choosesurvey.aspx → Survey.aspx → Result.aspx → Back to choosesurvey.aspx
 4. **Page Transitions**: Automatically handles "Tiếp tục" (Continue) buttons
 5. **Loop Process**: Returns to course list and processes next course
 
-## ⚙️ Configuration Options
-
-| Setting | Description | Default |
-|---------|-------------|---------|
-| Processing Speed | Delay between actions | 1 second |
-| Auto Start | Start automatically when page loads | Enabled |
-| Theme | Visual theme selection | Ocean Blue |
-
 ## 🔧 Technical Details
 
 ### Architecture
@@ -128,50 +146,6 @@ choosesurvey.aspx → Survey.aspx → Result.aspx → Back to choosesurvey.aspx
 - **Styling**: Modern CSS with Glass Morphism effects
 - **State Management**: React Hooks (useState, useEffect)
 - **Chrome APIs**: Manifest V3 with service workers
-
-### File Structure
-```
-TDTUAutoCourseReview/
-├── manifest.json              # Extension configuration
-├── react-popup/               # React frontend source
-│   ├── src/
-│   │   ├── popup/
-│   │   │   ├── App.tsx        # Main React component
-│   │   │   ├── App.css        # Modern styling
-│   │   │   └── index.tsx      # React entry point
-│   │   ├── types/
-│   │   │   └── chrome.d.ts    # TypeScript definitions
-│   │   └── assets/
-│   │       └── TDTU_logo.png  # Official TDTU logo
-│   ├── webpack.config.js      # Build configuration
-│   ├── tsconfig.json          # TypeScript configuration
-│   └── package.json           # Dependencies
-├── content.js                 # Main automation logic
-├── tdtu-survey.js            # Survey form handling
-├── background.js             # Service worker
-├── icons/                    # Extension icons and logos
-│   ├── icon16.png            # Extension icons
-│   ├── icon32.png
-│   ├── icon48.png
-│   ├── icon64.png
-│   ├── icon128.png
-│   ├── logo.png              # Original logo
-│   └── TDTU_logo.png         # Official TDTU logo
-├── switch-to-react.sh        # Build automation script
-├── switch-to-original.sh     # Fallback script
-├── CHANGELOG.md              # Version history
-└── README.md                 # This file
-```
-
-### Key Technologies
-- **React 18**: Latest React with concurrent features
-- **TypeScript**: Type-safe development
-- **Webpack 5**: Modern bundling with asset optimization
-- **Manifest V3**: Latest Chrome extension standard
-- **Content Scripts**: DOM manipulation and form automation
-- **Service Worker**: Background processing
-- **Chrome Storage API**: Settings persistence
-- **Modern CSS**: Glass morphism and gradient designs
 
 ### Build Process
 ```bash
@@ -195,27 +169,6 @@ npm run build
 - ✅ **Open Source**: Full source code available for review
 - ✅ **Type Safety**: TypeScript ensures code reliability
 
-## 🐛 Troubleshooting
-
-### Common Issues
-
-**Extension not working?**
-- Ensure you're on the correct TDTU evaluation page
-- Check if you're logged in to your student account
-- Try refreshing the page and restarting the extension
-
-**"Content Security Policy" errors?**
-- This is normal for some websites
-- Try using "Normal (1s)" or "Slow (2s)" speed options
-
-**Extension popup not opening?**
-- Reload the extension in `chrome://extensions/`
-- Make sure the extension is enabled
-
-**Build errors?**
-- Ensure Node.js and npm are installed
-- Run `npm install` in the `react-popup` directory
-- Check TypeScript compilation with `npm run build`
 
 ## 📝 Changelog
 
@@ -239,7 +192,7 @@ This extension is created for educational purposes and to help TDTU students eff
 ---
 
 <div align="center">
-  <p>Made with ❤️ for TDTU students using React + TypeScript</p>
+  <p>Made with ❤️ for TDTU students.</p>
   <p>⭐ Star this repo if it helped you!</p>
   <p>© 2025 Bao Minh-Nguyen Co., Ltd. All Rights Reserved.</p>
 </div> 
