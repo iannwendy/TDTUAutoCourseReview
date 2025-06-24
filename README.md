@@ -23,15 +23,9 @@ A modern Chrome extension designed to automatically fill out course evaluation f
 
 ### 🎥 Video Demo
 
-**[▶️ Watch Tutorial Video](https://github.com/iannwendy/TDTUAutoCourseReview/raw/main/introduction/introduction.mp4)**
+**[▶️ Watch Tutorial Video](https://drive.google.com/file/d/1WvlS_8pa3Ge-q4m4YzcywctmPOyD4H9o/view?usp=sharing)**
 
 *Click the link above to watch the detailed tutorial video*
-
----
-
-**📱 Can't watch the video?**
-- [📥 Download video to your device](https://github.com/iannwendy/TDTUAutoCourseReview/raw/main/introduction/introduction.mp4) (Right-click → Save as)
-- Or access the `introduction/` folder in the repository
 
 </div>
 
