@@ -2,7 +2,7 @@
 
 All notable changes to TDTU Auto Course Review Extension will be documented in this file.
 
-## [3.1.0] - 2025-12-20
+## [3.1.0] - 2025-06-24
 
 ### ✨ New Features
 - **Auto Next for E-learning**: Added intelligent auto-next functionality for TDTU e-learning platform

@@ -1,6 +1,6 @@
 # 🎓 TDTU Auto Course Review Extension
 
-A modern Chrome extension designed to automatically fill out course evaluation forms for Ton Duc Thang University (TDTU) students with a beautiful, contemporary React + TypeScript interface featuring official TDTU branding.
+A modern Chrome extension designed to automatically fill out course evaluation forms and complete online Skills courses for Ton Duc Thang University (TDTU) students with a beautiful, contemporary React + TypeScript interface featuring official TDTU branding.
 
 ![Extension Preview](https://img.shields.io/badge/Chrome-Extension-green?style=for-the-badge&logo=googlechrome)
 ![Version](https://img.shields.io/badge/Version-3.1.0-blue?style=for-the-badge)

@@ -22,7 +22,7 @@ const App: React.FC = () => {
   const [showLoading, setShowLoading] = useState(false);
   const [showAboutModal, setShowAboutModal] = useState(false);
   
-  // Auto Next states
+  // Elearning Kỹ Năng states
   const [autoNextEnabled, setAutoNextEnabled] = useState(false);
   const [autoNextClickCount, setAutoNextClickCount] = useState(0);
   const [autoNextButtonFound, setAutoNextButtonFound] = useState(false);
@@ -358,14 +358,14 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        {/* Auto Next Feature */}
+        {/* Elearning Kỹ Năng Feature */}
         <div className="auto-next-section">
           <h3>
             <i className="fas fa-forward"></i>
-            Auto Next (elearning)
+            Elearning Kỹ Năng
           </h3>
           
-          {/* Auto Next Status */}
+          {/* Elearning Kỹ Năng Status */}
           <div className={`auto-next-status ${autoNextEnabled ? 'active' : 'inactive'}`}>
             <div className="status-indicator">
               {autoNextEnabled ? (
@@ -392,7 +392,7 @@ const App: React.FC = () => {
             </div>
           </div>
 
-          {/* Auto Next Control */}
+          {/* Elearning Kỹ Năng Control */}
           <div className="auto-next-controls">
             <button 
               className={`auto-next-toggle ${autoNextEnabled ? 'stop' : 'start'}`}
@@ -414,7 +414,7 @@ const App: React.FC = () => {
 
           <div className="auto-next-info">
             <i className="fas fa-info-circle"></i>
-            <span>Tự động tìm và click nút "Next" trên trang Unit/Index của elearning (mỗi 200ms)</span>
+            <span>Tự động hoàn thành khoá học Online trên trang Elearning Kỹ Năng</span>
           </div>
         </div>
 
